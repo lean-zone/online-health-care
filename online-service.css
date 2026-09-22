@@ -1,0 +1,948 @@
+/* 线上服务 · 首页 Draft */
+/* ---------- 品牌专用字体（素材：branding-pic/fonts） ---------- */
+/* 中文：方正准圆（正文）/ 方正粗圆（标题）；英文与数字：Myriad Pro */
+@font-face {
+  font-family: "ZZFangZheng";
+  src: url("branding-pic/fonts/方正准圆_GBK.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "ZZFangZheng";
+  src: url("branding-pic/fonts/方正粗圆_GBK.woff2") format("woff2"),
+       url("branding-pic/fonts/方正粗圆_GBK.woff") format("woff");
+  font-weight: 600 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Myriad Pro";
+  src: url("branding-pic/fonts/MyriadPro-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Myriad Pro";
+  src: url("branding-pic/fonts/MyriadPro-Bold.otf") format("opentype");
+  font-weight: 600 700;
+  font-display: swap;
+}
+
+:root {
+  /* ---------- 卓正 VI 标准变量（品牌视觉识别规范） ---------- */
+  --zz-blue-1: #006F8A;   /* 标志标准色 */
+  --zz-blue-2: #00809E;   /* 背景色 */
+  --zz-blue-3: #009BBF;   /* 背景色 */
+  --zz-cyan: #00BED6;     /* 蓝绿色 · 大面积背景 */
+  --zz-blue: #67C6DF;     /* 蓝色 · 大面积背景 */
+  --zz-lightblue: #D9EEF2;/* 浅蓝色 · 提亮 / 文本色 */
+  --zz-bg: #F6F6F6;       /* 浅灰色 · 背景 */
+  --zz-white: #FFFFFF;
+  --zz-text: #595757;     /* 深灰色 · 文本色 */
+  --zz-accent-yellow: #FFEE6F; /* 亮黄色 · 极小比例点缀 */
+  --zz-accent-orange: #F18E1D; /* 橙色 · 极小比例点缀 */
+  --zz-dept-adult: #009FB1;    /* 成人医疗蓝绿（科室色） */
+  --icon-ink: #333333;         /* 图标线条统一色（与官方图标素材保持一致） */
+
+  /* ---------- 页面令牌 ---------- */
+  --bg: #F6F6F6;
+  --surface: #FFFFFF;
+  --ink: #595757;
+  --ink-2: #7C7979;
+  --ink-3: #B3B1B1;
+  --line: #E7E6E4;
+  --line-soft: #F0F0F0;
+  --teal: #00809E;
+  --teal-deep: #006F8A;
+  --teal-soft: #D9EEF2;
+  --teal-tint: #EDF7FA;
+  --radius: 18px;
+  --radius-sm: 14px;
+  --radius-lg: 22px;
+  --shadow: 0 8px 22px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --font: "Myriad Pro", "ZZFangZheng", "Inter", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  font-family: var(--font);
+  background: #ECECEC;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+body { display: flex; justify-content: center; min-height: 100vh; }
+
+/* 手机外壳 */
+.phone {
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  background: var(--bg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.10);
+}
+
+/* 顶部导航（标准 H5） */
+.topbar {
+  height: 46px;
+  display: flex;
+  align-items: center;
+  background: var(--bg);
+  padding: 0 6px;
+  flex-shrink: 0;
+}
+.topbar__back, .topbar__more {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--ink-2);
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+.topbar__back svg { width: 22px; height: 22px; }
+.topbar__more { gap: 3px; }
+.topbar__more span { width: 4px; height: 4px; border-radius: 50%; background: currentColor; display: block; }
+.topbar__title {
+  flex: 1;
+  text-align: center;
+  font-size: 16.5px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--ink);
+}
+
+/* 顶部问候行已移除：两种状态都直接进入 ① 日常健康管理（`.greet` 相关样式随之删除） */
+
+/* 主内容 */
+.page {
+  flex: 1;
+  overflow-y: auto;
+  padding: 6px 18px 36px;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* 模块通用 */
+.block { margin-bottom: 30px; }
+.block__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding: 0 2px;
+}
+.block__icon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  display: block;
+  object-fit: contain;
+}
+.block__title {
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: var(--ink);
+}
+.block__head-link {
+  margin-left: auto;
+  border: none;
+  background: none;
+  padding: 4px 6px;
+  font-family: var(--font);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--teal-deep);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  transition: color .16s ease, background .16s ease;
+}
+.block__head-link:hover { color: var(--teal); background: var(--teal-tint); }
+.block__head-link .arw {
+  display: inline-block;
+  font-size: 13px;
+  transition: transform .16s ease;
+}
+.block__head-link:hover .arw { transform: translateX(3px); }
+
+/* ---------- ① 日常健康管理 ---------- */
+.dh-list { display: flex; flex-direction: column; gap: 10px; }
+
+.dh-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font);
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: 16px;
+  padding: 14px 16px;
+  box-shadow: var(--shadow-sm);
+  transition: transform .14s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.dh-card:hover { box-shadow: var(--shadow); border-color: rgba(0, 111, 138, 0.22); }
+.dh-card:active { transform: scale(0.99); }
+
+.dh-card__icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--teal-soft);
+  color: var(--icon-ink);
+}
+.dh-card__body { flex: 1; min-width: 0; }
+.dh-card__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.dh-card__title {
+  font-size: 15.5px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: var(--ink);
+}
+.dh-card__chip {
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 3px 9px;
+  flex-shrink: 0;
+  letter-spacing: 0.2px;
+  line-height: 1.5;
+  background: var(--teal-soft);
+  color: var(--teal-deep);
+}
+.dh-card__sub {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  line-height: 1.6;
+  margin-top: 5px;
+}
+.dh-card__go {
+  font-size: 16px;
+  color: var(--ink-3);
+  flex-shrink: 0;
+  transition: transform .16s ease, color .16s ease;
+}
+.dh-card:hover .dh-card__go { transform: translateX(3px); color: var(--teal); }
+
+/* ---------- ② 专项健康管理 ---------- */
+.sp-list { display: flex; flex-direction: column; gap: 10px; }
+.sp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.sp-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.sp {
+  position: relative;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font);
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: 16px;
+  padding: 14px 16px;
+  box-shadow: var(--shadow-sm);
+  transition: transform .14s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.sp:hover { box-shadow: var(--shadow); border-color: rgba(0, 111, 138, 0.22); }
+.sp:active { transform: scale(0.99); }
+
+.sp__icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--teal-soft);
+  color: var(--icon-ink);
+}
+/* 内联图标：内容占画布 66.7%，故框放大到 28px 与官方图标（73.5%）观感一致；
+   描边换算后渲染约 1.6px */
+.sp__icon svg { width: 28px; height: 28px; stroke-width: 1.37; }
+
+/* 紧凑卡（双列流）：图标 + 标题一行，说明小字单独整行 */
+.sp--compact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: flex-start;
+  padding: 14px 16px;
+  column-gap: 10px;
+  row-gap: 9px;
+}
+.sp--compact .sp__body { display: contents; }
+.sp--compact .sp__name {
+  order: 0;
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+  font-size: 15.5px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sp--compact .sp__desc {
+  order: 2;
+  width: 100%;
+  font-size: 12.5px;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+.sp--compact .sp__go {
+  order: 1;
+  font-size: 16px;
+  color: var(--ink-3);
+  flex-shrink: 0;
+  margin-left: 2px;
+  transition: transform .16s ease, color .16s ease;
+}
+.sp--compact:hover .sp__go { transform: translateX(3px); color: var(--teal); }
+
+/* 查看全部卡（与心理健康并列） */
+.sp--all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 66px;
+  padding: 14px 16px;
+  background: var(--teal-tint);
+  border-color: var(--line-soft);
+  color: var(--teal-deep);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.sp--all:hover {
+  background: var(--teal-soft);
+  border-color: rgba(0, 111, 138, 0.4);
+}
+.sp--all .sp__go {
+  font-size: 16px;
+  transition: transform .16s ease;
+}
+.sp--all:hover .sp__go { transform: translateX(3px); }
+
+/* ---------- ③ 线上问诊 ---------- */
+.consult {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font);
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: 16px;
+  padding: 14px 16px;
+  box-shadow: var(--shadow-sm);
+  transition: transform .14s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.consult:hover { box-shadow: var(--shadow); border-color: rgba(0, 111, 138, 0.22); }
+.consult:active { transform: scale(0.99); }
+
+.consult__icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--teal-soft);
+  color: var(--icon-ink);
+}
+.consult__icon--sm { width: 40px; height: 40px; border-radius: 12px; background: var(--teal-soft); }
+
+.consult__text { flex: 1; min-width: 0; }
+.consult__name { font-size: 15.5px; font-weight: 600; letter-spacing: 0.3px; }
+.consult__desc {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  line-height: 1.6;
+  margin-top: 6px;
+}
+.consult__note { font-size: 11.5px; color: var(--teal-deep); line-height: 1.6; margin-top: 8px; letter-spacing: 0.2px; }
+
+.chips {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+  font-size: 11.5px;
+  color: var(--teal-deep);
+  letter-spacing: 0.2px;
+}
+.chips i { font-style: normal; color: var(--ink-3); }
+.consult__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--teal-deep);
+  letter-spacing: 0.3px;
+}
+.consult__cta-arrow { display: inline-block; transition: transform .16s ease; }
+.consult:hover .consult__cta-arrow { transform: translateX(3px); }
+
+.consult__go {
+  font-size: 18px;
+  color: var(--ink-3);
+  flex-shrink: 0;
+  transition: transform .16s ease, color .16s ease;
+}
+.consult:hover .consult__go { transform: translateX(3px); color: var(--teal); }
+.consult--sub {
+  margin-top: 10px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border-color: var(--line-soft);
+}
+
+/* 页脚说明 */
+.footnote {
+  font-size: 11px;
+  line-height: 1.75;
+  color: var(--ink-3);
+  text-align: center;
+  padding: 0 12px 8px;
+}
+
+/* ---------- 右上角「…」状态切换菜单 ---------- */
+.dropdown {
+  position: absolute;
+  top: 46px;
+  right: 14px;
+  z-index: 120;
+  min-width: 136px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
+  padding: 6px;
+  animation: fadein .18s ease;
+}
+.dropdown[hidden] { display: none; }
+.dropdown__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-family: var(--font);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  background: none;
+  text-align: left;
+  transition: background .14s ease, color .14s ease;
+}
+.dropdown__item:hover { background: var(--teal-tint); color: var(--teal-deep); }
+.dropdown__item.is-current {
+  color: var(--teal-deep);
+  font-weight: 600;
+  background: var(--teal-soft);
+}
+.dropdown__item .dropdown__check {
+  font-size: 14px;
+  color: var(--teal);
+  flex-shrink: 0;
+}
+.dropdown__sep {
+  height: 1px;
+  background: var(--line-soft);
+  margin: 4px 6px;
+}
+
+/* ---------- 新客引导主卡（从了解自己的健康开始）
+   紧凑版：图标与标题同行、说明一行块、按钮与次要入口同一排。
+   原竖排大卡高约 330px，会把下方「科学减重」卡挤出首屏，故整体收紧到约 170px。 ---------- */
+.onboard {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--surface) 0%, #F1F1F1 52%, var(--teal-tint) 100%);
+  border: 1px solid var(--line-soft);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+.onboard::before,
+.onboard::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 111, 138, 0.10);
+  pointer-events: none;
+}
+.onboard::before {
+  top: -78px;
+  right: -66px;
+  width: 210px;
+  height: 210px;
+}
+.onboard::after {
+  top: -30px;
+  right: -18px;
+  width: 140px;
+  height: 140px;
+  border-color: rgba(0, 111, 138, 0.07);
+}
+.onboard__hd {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.onboard__mark {
+  position: relative;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--teal-soft);
+  color: var(--teal-deep);
+}
+.onboard__mark::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 111, 138, 0.14);
+}
+.onboard__title {
+  position: relative;
+  font-size: 16.5px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--ink);
+}
+.onboard__desc {
+  position: relative;
+  font-size: 12.5px;
+  color: var(--ink-2);
+  line-height: 1.6;
+  margin-top: 8px;
+}
+.onboard__btn {
+  position: relative;
+  width: 100%;
+  margin-top: 12px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(135deg, var(--zz-cyan) 0%, var(--zz-blue-3) 42%, var(--zz-blue-2) 72%, var(--zz-blue-1) 100%);
+  box-shadow: 0 8px 20px rgba(0, 111, 138, 0.22);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: transform .14s ease, box-shadow .18s ease;
+}
+.onboard__btn:hover { box-shadow: 0 10px 24px rgba(0, 111, 138, 0.28); }
+.onboard__btn:active { transform: scale(0.98); }
+.onboard__btn-arrow { display: inline-block; transition: transform .16s ease; }
+.onboard__btn:hover .onboard__btn-arrow { transform: translateX(3px); }
+
+
+/* 轻提示 */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 60px;
+  transform: translateX(-50%) translateY(10px);
+  z-index: 300;
+  max-width: 80%;
+  background: rgba(0, 0, 0, 0.92);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 400;
+  padding: 11px 18px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.toast.is-show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast[hidden] { display: none; }
+
+@media (min-width: 480px) {
+  .phone { margin: 24px 0; min-height: calc(100vh - 48px); border-radius: 32px; }
+}
+
+/* ==========================================================================
+   科学减重 · 组件卡
+   唯一来源即本文件（.wcard 作用域版）；早期设计库副本 card-styles.* / demo.css
+   已归档到 _legacy/weight-management-demo/，不再发布，也不要再从这里反向复制
+   用 .wcard 包裹一个 .card 即可嵌入，令牌作用域化，不影响页面全局样式
+   ========================================================================== */
+.wcard {
+  --card: #ffffff;
+  --ink: #595757;
+  --ink-2: #7C7979;
+  --ink-3: #B3B1B1;
+  --line: #E7E6E4;
+  --hover: #F6F6F6;
+  --accent: #00809E;
+  --accent-soft: #D9EEF2;
+  --accent-deep: #006F8A;
+  --good: #009FB1;
+  --good-soft: #DFF2F4;
+  --line-g: rgba(0, 111, 138, 0.18);
+  --radius: 22px;
+  --radius-sm: 14px;
+  --shadow: 0 12px 40px rgba(0, 0, 0, 0.07);
+  --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.045);
+}
+.wcard button {
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 卡片容器 */
+.wcard .card {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--line-soft);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 16px 16px 14px;
+  color: var(--ink);
+  text-align: left;
+  transition: box-shadow .22s ease;
+}
+.wcard .card:hover { box-shadow: 0 16px 46px rgba(0, 0, 0, 0.10); }
+.wcard .card:active { transform: scale(.996); }
+
+/* 顶栏：logo + 名称 + 状态标签 */
+.wcard .card__hd { display: flex; align-items: center; gap: 10px; }
+.wcard .card__logo {
+  width: 30px; height: 30px; border-radius: 10px; flex-shrink: 0; color: var(--icon-ink);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--teal-soft);
+}
+.wcard .card__logo svg { width: 20px; height: 20px; stroke-width: 1.75; }
+.wcard .card__nm {
+  font-size: 16.5px; font-weight: 700; letter-spacing: .2px; flex: 1; min-width: 0;
+  line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.wcard .card__st {
+  flex-shrink: 0; font-size: 11px; font-weight: 600; border-radius: 999px;
+  padding: 3px 9px; white-space: nowrap;
+  border: none; font-family: inherit; cursor: pointer;
+  transition: transform .12s ease, box-shadow .16s ease;
+}
+.wcard .card__st:active { transform: scale(.94); }
+.wcard .card__st:focus-visible { outline: 2px solid rgba(0, 111, 138, .45); outline-offset: 2px; }
+.wcard .card__st--teal { color: var(--accent-deep); background: var(--accent-soft); }
+.wcard .card__st--teal::before {
+  content: ""; display: inline-block; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--zz-accent-yellow); margin-right: 5px; vertical-align: 1px;
+}
+.wcard .card__st--grey { color: var(--ink-3); background: var(--hover); }
+
+/* 通用小节元素 */
+.wcard .divider { height: 1px; background: var(--line); }
+
+/* ---------- 购前 · 科普核心（想了解什么？） ---------- */
+.wcard .gk {
+  margin-top: 16px; padding: 4px 2px 14px; border-bottom: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.wcard .gk__h {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 17px; font-weight: 700; line-height: 1.4;
+  color: var(--ink); text-decoration: none; cursor: pointer;
+}
+.wcard .gk__go {
+  font-size: 16px; line-height: 1; color: var(--ink-3);
+  transition: transform .16s ease, color .16s ease;
+}
+.wcard .gk__h:hover .gk__go { transform: translateX(3px); color: var(--teal); }
+.wcard .roll { position: relative; height: 26px; overflow: hidden; }
+.wcard .roll__t,
+.wcard .kbroll__t {
+  position: absolute; left: 0; right: 0; line-height: 26px; font-size: 12.5px;
+  border: none; background: none; font-family: inherit; width: 100%;
+  text-align: left; text-decoration: none; cursor: pointer;
+  color: var(--ink-2); opacity: 0; transform: translateY(10px);
+  transition: opacity .5s ease, transform .5s ease;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-left: 14px;
+}
+.wcard .roll__t::before,
+.wcard .kbroll__t::before {
+  content: ""; position: absolute; left: 0; top: 50%; margin-top: -3px;
+  width: 6px; height: 6px; border-radius: 2px; background: var(--accent); opacity: .55;
+}
+.wcard .roll__t.is-on,
+.wcard .kbroll__t.is-on { opacity: 1; transform: none; }
+.wcard .ct { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.wcard .ct__c {
+  border: none; border-radius: 12px; padding: 8px 2px; text-align: center; cursor: pointer;
+  font-size: 11px; color: var(--ink-2); text-decoration: none;
+  background: linear-gradient(180deg, #E3F2F7 0%, #ffffff 72%);
+  transition: background .18s ease;
+}
+.wcard .ct__c b { display: block; font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 1px; }
+.wcard .ct__c:hover { background: linear-gradient(180deg, var(--accent-soft) 0%, #ffffff 80%); }
+.wcard .ct__c:active { transform: scale(.97); }
+
+/* ---------- 用药陪跑 · 数据核心（已减体重 + 记录） ---------- */
+.wcard .wld { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.wcard .wld__n {
+  font-size: 32px; font-weight: 700; color: var(--good); letter-spacing: -.5px; line-height: 1.1;
+}
+.wcard .wld__n i { font-style: normal; font-size: 15px; font-weight: 500; color: var(--ink-3); margin-left: 2px; }
+.wcard .wld__btn {
+  flex-shrink: 0; border: none; background: none; padding: 8px 0 8px 12px; cursor: pointer;
+  font-size: 13px; font-weight: 500; color: var(--teal-deep); text-decoration: none;
+  transition: opacity .15s ease;
+}
+.wcard .wld__btn:hover { opacity: .75; }
+.wcard .wld__btn:active { opacity: .5; }
+.wcard .wld__meta { margin-top: 10px; font-size: 12.5px; color: var(--ink-2); line-height: 1.6; }
+
+/* 知识库入口行（跳转链接，a 标签复用原按钮样式） */
+.wcard .kb {
+  display: flex; align-items: center; gap: 8px; cursor: pointer;
+  width: 100%; border: none; background: none; padding: 0; text-align: left;
+  font-size: 13px; font-weight: 600; color: var(--ink); text-decoration: none;
+}
+.wcard .kb__go { flex-shrink: 0; font-size: 15px; color: var(--ink-3); line-height: 1; }
+
+/* 知识库入口（轮播版）：整行不可点，只有轮播文字是链接 */
+.wcard .kb--roll { cursor: default; }
+.wcard .kbroll {
+  position: relative; flex: 1; min-width: 0; height: 26px; overflow: hidden;
+}
+/* 轮播条目正文样式与购前卡完全共用（见上方 .roll__t 分组规则），此处只加离场动画 */
+.wcard .kbroll__t.is-out { opacity: 0; transform: translateY(-10px); }
+
+/* 按钮 */
+.wcard .cb__btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; height: 44px; border-radius: 12px; font-size: 14.5px; font-weight: 600;
+  letter-spacing: .2px; cursor: pointer; line-height: 1; text-decoration: none;
+  transition: transform .12s ease, background .18s ease, box-shadow .18s ease;
+}
+.wcard .cb__btn--solid {
+  border: none; color: #fff;
+  background: linear-gradient(135deg, var(--zz-cyan) 0%, var(--zz-blue-3) 42%, var(--accent) 72%, var(--accent-deep) 100%);
+  box-shadow: 0 5px 12px rgba(0, 111, 138, .22);
+}
+.wcard .cb__btn--solid:active { transform: scale(.99); box-shadow: 0 2px 6px rgba(0, 111, 138, .16); }
+.wcard .cb__btn--ghost {
+  border: 1.5px solid rgba(0, 111, 138, .5); color: var(--accent-deep); background: #fff;
+}
+.wcard .cb__btn--ghost:hover { background: var(--accent-soft); }
+.wcard .cb__btn--ghost:active { transform: scale(.99); }
+
+/* 辅助区（核心下方） */
+.wcard .aux { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+.wcard .ag { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.wcard .ag--cb { margin-top: 5px; }
+.wcard .cb { display: flex; flex-direction: column; gap: 6px; }
+.wcard .cb__s { font-size: 11px; color: var(--ink-3); text-align: center; }
+
+/* ---------- 用药陪跑 · 有提醒版：置顶续药提醒小卡 ---------- */
+.wcard .rk {
+  position: relative;
+  background: #EDF7FA; border: 1px solid var(--line-g);
+  border-radius: 14px; padding: 12px 14px;
+  transition: background .16s ease;
+}
+.wcard .rk:hover { background: #E3F2F7; }
+.wcard .rk__link {
+  display: flex; gap: 10px; align-items: flex-start;
+  text-decoration: none; color: inherit; padding-right: 62px;
+}
+/* 右上角：切换提醒（循环 8 条规格提醒） */
+.wcard .rk__switch {
+  position: absolute; top: 6px; right: 6px;
+  width: 24px; height: 24px; border: none; border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255, 255, 255, .75); color: var(--ink-3); cursor: pointer;
+  transition: color .16s ease, background .16s ease, transform .12s ease;
+}
+.wcard .rk__switch svg { width: 13px; height: 13px; }
+.wcard .rk__switch:hover { color: var(--accent-deep); background: #fff; }
+.wcard .rk__switch:active { transform: scale(.9); }
+/* 右上角：问 AI 助理（带本条提醒上下文，entry 5） */
+.wcard .rk__ask {
+  position: absolute; top: 6px; right: 34px;
+  width: 24px; height: 24px; border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255, 255, 255, .75); color: var(--ink-3); text-decoration: none;
+  transition: color .16s ease, background .16s ease, transform .12s ease;
+}
+.wcard .rk__ask svg { width: 13px; height: 13px; }
+.wcard .rk__ask:hover { color: var(--accent-deep); background: #fff; }
+.wcard .rk__ask:active { transform: scale(.9); }
+.wcard .rk__ico {
+  width: 26px; height: 26px; border-radius: 8px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: #FDF0DC; color: var(--zz-accent-orange);
+}
+.wcard .rk__ico svg { width: 15px; height: 15px; }
+.wcard .rk__tx { flex: 1; min-width: 0; }
+.wcard .rk__tx b { display: block; font-size: 13px; font-weight: 700; color: var(--ink); }
+.wcard .rk__tx p { font-size: 11.5px; line-height: 1.7; color: var(--ink-2); margin-top: 3px; }
+
+/* 双按钮（AI 助理 / 线上续药） */
+.wcard .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+/* ---------- 减重卡 · 阶段核心（决策 / 陪跑 / 续费 / 回顾 共用零件） ---------- */
+.wcard .core__h { font-size: 16px; font-weight: 700; line-height: 1.45; }
+.wcard .core__d { margin-top: 4px; font-size: 12.5px; color: var(--ink-2); line-height: 1.6; }
+
+
+/* 定制方案卡（整卡可点：进减重方案定制页） */
+.wcard .plan {
+  display: block;
+  border: 1px solid var(--line-g); background: var(--teal-tint);
+  border-radius: 14px; padding: 12px 14px;
+  color: inherit; text-decoration: none; cursor: pointer;
+  transition: background .16s ease, border-color .16s ease;
+}
+.wcard .plan:hover { background: #E3F2F7; border-color: rgba(0, 111, 138, .3); }
+.wcard .plan:active { transform: scale(.995); }
+.wcard .plan__t { font-size: 14.5px; font-weight: 700; letter-spacing: .2px; }
+.wcard .plan__s { margin-top: 4px; font-size: 12px; color: var(--ink-2); line-height: 1.6; }
+
+/* 回顾数据带 */
+.wcard .band {
+  margin-top: 12px; border-radius: 16px; padding: 16px 16px 14px; color: #fff;
+  background: linear-gradient(135deg, var(--zz-blue-3) 0%, var(--zz-blue-2) 55%, var(--zz-blue-1) 100%);
+  box-shadow: 0 8px 20px rgba(0, 111, 138, .18);
+}
+.wcard .band__t { font-size: 10.5px; letter-spacing: 1.5px; opacity: .85; }
+.wcard .band__n { margin-top: 6px; font-size: 34px; font-weight: 700; letter-spacing: -.5px; line-height: 1.05; }
+.wcard .band__n i { font-style: normal; font-size: 15px; font-weight: 500; margin-left: 2px; opacity: .9; }
+.wcard .band__s { margin-top: 4px; font-size: 12px; opacity: .9; }
+.wcard .band__m { margin-top: 14px; display: flex; align-items: center; gap: 14px; }
+.wcard .band__m > div { display: flex; flex-direction: column; }
+.wcard .band__m b { font-size: 15px; font-weight: 700; }
+.wcard .band__m b i { font-style: normal; font-size: 11px; font-weight: 500; margin-left: 1px; opacity: .85; }
+.wcard .band__m em { margin-top: 1px; font-size: 11px; font-style: normal; opacity: .82; }
+.wcard .band__open {
+  margin-left: auto; font-size: 12.5px; font-weight: 600; color: #fff; white-space: nowrap;
+  text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, .55); padding-bottom: 1px;
+}
+.wcard .band__open:hover { border-color: #fff; }
+
+/* ==========================================================================
+   品牌图标素材（branding-pic/icons · 102×102 画布内留白，故显示尺寸略放大）
+   ========================================================================== */
+.dh-card__icon img { width: 26px; height: 26px; display: block; }
+.consult__icon img { width: 26px; height: 26px; display: block; }
+.consult__icon--sm img { width: 26px; height: 26px; }
+.onboard__mark img { width: 24px; height: 24px; display: block; }
+.sp--compact .sp__icon img { width: 26px; height: 26px; display: block; }
+/* 兜底：任何图标容器内的 img 都不允许超出容器 */
+.dh-card__icon, .consult__icon, .sp__icon, .onboard__mark { overflow: hidden; }
+
+
+/* ==========================================================================
+   单页双状态（老客 / 新客）
+   首页 online-service.html 一份文件承载两种状态，差异块用 [data-variant] 标注；
+   data-state 由页面末尾的内联脚本设置，缺省值 old —— 无 JS 时即老客状态，
+   与拆分两页前的表现一致。
+   ========================================================================== */
+html[data-state="old"] [data-variant="new"],
+html[data-state="new"] [data-variant="old"] { display: none !important; }
+
+/* 状态下拉：勾选只出现在当前状态那一项（此前是写死在当前项里的） */
+.dropdown__item .dropdown__check { display: none; }
+.dropdown__item.is-current .dropdown__check { display: inline; }
+/* ==========================================================================
+   专项健康管理：文字标签 + 选中项说明小卡（替代原 2×2 大卡与图标，首屏约省 170px）
+   ========================================================================== */
+.spec-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.spec-tag {
+  /* 所有标签等宽：以内容最宽的「全部 →」为基准，短标签用 min-width 补齐并居中 */
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
+  border: 1px solid var(--line-soft);
+  background: var(--surface);
+  border-radius: 999px;
+  padding: 7px 10px;
+  font-family: var(--font);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background .16s ease, color .16s ease, border-color .16s ease;
+}
+.spec-tag:hover { border-color: var(--teal); color: var(--teal-deep); }
+.spec-tag.is-on {
+  background: var(--teal-soft);
+  border-color: transparent;
+  color: var(--teal-deep);
+  font-weight: 600;
+}
+.spec-tag--all {
+  color: var(--teal-deep);
+  border-color: rgba(0, 111, 138, 0.28);
+  font-weight: 600;
+}

@@ -1,0 +1,301 @@
+/* =============================================================================
+   科学减重 · 我的减重方案（weight-management-plan）
+   -----------------------------------------------------------------------------
+   结构来源：减重/Weight-Management/plan-draft.html（低保真结构草稿）
+     ① 方案头（轻量卡片，仅承载方案名与对象信息）
+     ② 模块 01 评估结论与用药适用性（用户情况 → 方案安排的对应关系）
+     ③ 模块 02 用药方案（替尔泊肽/穆峰达® 详情 + 弱化展示的常见反应）
+     ④ 模块 03 预期进程 + 剂量爬坡（阶段一览不可点，只说明周期与阶段数）
+     ⑤ 模块 04 生活配合
+     ⑥ 审核医生 + 免责说明（同一张卡片，医生可展开资质）
+     ⑦ 底部 CTA（吸底常驻）：AI 减重助理（带上下文）/ 立即购药
+   定位：用户尚未开始用药的「购药前」页面——全篇只讲预计安排与应对，
+     不出现任何实际用药数据、疗程周次与「已过档」等进度表述。
+   草稿中的编号标注与提示标签属于结构确认稿，正式页不出现。
+   视觉：卓正医疗 VI（2025.01），见 plan.css
+   ============================================================================= */
+(function () {
+  'use strict';
+
+  /* ===================== 1. 入口与元信息 ===================== */
+  var AGENT_URL = '../weight-management/Weight-loss-assistant/index.html';  /* AI 减重助理（对话页）：分入口呼起（entry 4 方案页场景） */
+  /* 返回兜底：无浏览历史时回到 portal 首页（原「评估」所在的 Demo 页已下线） */
+  var HOME_URL = '../online-service.html';
+  /* 立即购药：处方审核 / 确认购买页（发布后即 online-health-care/Invoice-Review-Page/） */
+  var INVOICE_URL = '../Invoice-Review-Page/index.html';
+
+  var PLAN = {
+    name: '李蔓',
+    age: 34,
+    gender: '女',
+    planName: '替尔泊肽标准方案'
+  };
+
+  var DOCTOR = {
+    name: '李医生',
+    dept: '内分泌科',
+    title: '主治医师',
+    updated: '2026.09.02',
+    rows: [
+      ['执业', '临床医学硕士 · 执业医师'],
+      ['专长', '成人肥胖与代谢综合征、2 型糖尿病前期干预'],
+      ['经验', '从事内分泌代谢诊疗 10 年，长期跟进减重门诊随访'],
+      ['说明', '本方案由其审核签发，用药与剂量以最终处方为准']
+    ]
+  };
+
+  /* ===================== 2. 疗程阶段（只作周期概览，不可点击） ===================== */
+  var STEPS = [
+    { n: '1–4 周', t: '适应期' },
+    { n: '5–8 周', t: '剂量调整' },
+    { n: '9–12 周', t: '优化期' },
+    { n: '13–24 周', t: '维持期' }
+  ];
+
+  /* ===================== 3. 模块内容 ===================== */
+  /* 替尔泊肽（穆峰达®）说明书级基础信息 */
+  var FACT_ROWS = [
+    ['作用机制', 'GIP/GLP-1 双受体激动剂，延长饱腹信号'],
+    ['可选规格', '2.5 / 5 / 7.5 / 10 / 12.5 / 15 mg（单支 0.5mL）'],
+    ['给药方式', '皮下注射 · 腹部、大腿或上臂'],
+    ['用药频率', '每周 1 次，尽量固定同一天'],
+    ['治疗周期', '24 周，按疗程分阶段评估'],
+    ['储存要求', '2–8℃ 冷藏避光，不可冷冻；以说明书为准'],
+    ['剂量选择', '具体规格与剂量由医生按耐受情况确定']
+  ];
+
+  var MODS = [
+    {
+      no: '01',
+      t: '评估结论与用药适用性',
+      html:
+        '<p class="lead">你符合用药条件，现在就是合适的时机。</p>' +
+        '<div class="chips">' +
+        '<span class="chip"><b>BMI 27.2</b></span>' +
+        '<span class="chip">腰围 88cm · 中心性肥胖</span>' +
+        '<span class="chip">空腹血糖 5.9</span>' +
+        '<span class="chip">甘油三酯 2.3</span>' +
+        '<span class="chip">轻度脂肪肝</span>' +
+        '<span class="chip">母亲 2 型糖尿病</span>' +
+        '</div>' +
+        '<div class="callout"><i class="callout__i" aria-hidden="true">→</i><span>多项代谢指标同时异常、叠加家族史，属<b>代谢综合征早期</b>。减重对你是降低代谢风险，不只是体重问题。</span></div>' +
+        '<p class="lead">你身上的情况，对应方案里的哪些安排</p>' +
+        '<ul class="ul">' +
+        '<li><b>BMI 27.2 + 血糖血脂异常 + 脂肪肝</b> → 不只管体重，同时把代谢指标纳入复查</li>' +
+        '<li><b>多次减重后反弹</b> → 用替尔泊肽做长期食欲调控，不再做短期节食</li>' +
+        '<li><b>中心性肥胖、母亲 2 型糖尿病</b> → 越早管住体重与代谢，长期获益越大</li>' +
+        '</ul>' +
+        '<p class="soft-tx">有妊娠计划请提前告知医生，需面诊讨论停药时机与洗脱期。</p>'
+    },
+    {
+      no: '02',
+      t: '用药方案',
+      html:
+        '<div class="stat">' +
+        '<div class="stat__i"><span class="stat__k">通用名</span><span class="stat__v">替尔泊肽注射液</span></div>' +
+        '<div class="stat__i"><span class="stat__k">商品名</span><span class="stat__v">穆峰达®</span></div>' +
+        '<div class="stat__i"><span class="stat__k">生产厂家</span><span class="stat__v">礼来 Eli Lilly</span></div>' +
+        '<div class="stat__i"><span class="stat__k">规格</span><span class="stat__v">0.5mL 预充笔</span></div>' +
+        '</div>' +
+        '<div class="facts">' +
+        FACT_ROWS.map(function (r) {
+          return '<div class="facts__r"><span class="facts__k">' + r[0] + '</span><span class="facts__v">' + r[1] + '</span></div>';
+        }).join('') +
+        '</div>' +
+        '<p class="soft__h">常见反应</p>' +
+        '<p class="soft-tx">可能出现恶心、没胃口、便秘、胃胀、乏力，多数会随适应减轻；若出现持续呕吐、黄疸、皮疹或喘不上气，请立即联系医生。</p>'
+    },
+    {
+      no: '03',
+      t: '剂量爬坡与预期进程',
+      html:
+        '<p class="lead">预期进程</p>' +
+        '<table class="tb"><thead><tr><th>时间</th><th>会发生什么</th></tr></thead><tbody>' +
+        '<tr><td>第 1 周</td><td>有人吃两口就饱，有人完全没感觉——都正常</td></tr>' +
+        '<tr><td>第 2–4 周</td><td>食欲下降，体重开始走。速度慢是正常的</td></tr>' +
+        '<tr><td>第 2–3 个月</td><td>变化最明显的阶段</td></tr>' +
+        '<tr><td>3 个月后</td><td>会慢下来甚至停 2–3 周，是平台期，不是药失效</td></tr>' +
+        '</tbody></table>' +
+        '<p class="lead">剂量爬坡</p>' +
+        '<p class="sub">低起点、慢爬坡，具体数值以医生处方为准</p>' +
+        '<ul class="ld">' +
+        STEPS.map(function (s) {
+          return '<li class="st"><span class="st__n tnum">' + s.n + '</span><span class="st__t">' + s.t + '</span></li>';
+        }).join('') +
+        '</ul>'
+    },
+    {
+      no: '04',
+      t: '生活配合',
+      html:
+        '<p>药物解决的是<b>食欲信号调控</b>这一环节。饮食结构、运动习惯与营养支持需要同步跟上，这部分药物替代不了。</p>' +
+        '<ul class="ul">' +
+        '<li><b>饮食</b>：蛋白质优先，控制精制糖与油炸食品，具体总量按营养建议调整</li>' +
+        '<li><b>运动</b>：从快走等中等强度活动开始，逐步加入力量训练</li>' +
+        '<li><b>监测</b>：固定日期称重并记录饮食与身体反应，复查时一起看</li>' +
+        '</ul>' +
+        '<div class="callout"><i class="callout__i" aria-hidden="true">→</i><span><b>卓正会基于你的数据持续提供定制化陪跑方案</b>，按你的进展、身体反应与生活节奏动态调整，覆盖饮食、运动、营养等配合环节。</span></div>'
+    }
+  ];
+
+  /* ===================== 4. 渲染 ===================== */
+  var ARW = '<svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  /* 见 shared.js */
+  var esc = ZZ.esc;
+
+  function renderHero() {
+    return '' +
+      '<section class="hero">' +
+      '<span class="hero__deco" aria-hidden="true"></span>' +
+      '<span class="hero__rule" aria-hidden="true"></span>' +
+      '<h1 class="hero__t">定制减重方案</h1>' +
+      '<span class="hero__s">' + esc(PLAN.name) + ' · ' + PLAN.age + ' 岁 · ' + esc(PLAN.planName) + '</span>' +
+      '</section>';
+  }
+
+  function renderMods() {
+    return MODS.map(function (m) {
+      return '' +
+        '<section class="mod card">' +
+        '<button class="mod__h" type="button" aria-expanded="true">' +
+        '<span class="mod__no">' + m.no + '</span>' +
+        '<span class="mod__t">' + esc(m.t) + '</span>' +
+        '<span class="mod__arw" aria-hidden="true">' + ARW + '</span>' +
+        '</button>' +
+        '<div class="mod__b"><div class="mod__b-in">' + m.html + '</div></div>' +
+        '</section>';
+    }).join('');
+  }
+
+  function renderDoctor() {
+    return '' +
+      '<section class="rev card" id="revCard">' +
+      '<button class="rev__h" id="revBtn" type="button" aria-expanded="false">' +
+      '<span class="rev__av" aria-hidden="true">李</span>' +
+      '<span class="rev__tx">' +
+      '<b>审核医生 · ' + esc(DOCTOR.name) + '</b>' +
+      '<span class="rev__sub">' + esc(DOCTOR.dept) + ' · ' + esc(DOCTOR.title) + ' · 更新于 ' + esc(DOCTOR.updated) + '</span>' +
+      '</span>' +
+      '<i class="rev__i" aria-hidden="true">+</i>' +
+      '</button>' +
+      '<div class="rev__b"><div class="rev__in">' +
+      DOCTOR.rows.map(function (r) {
+        return '<div class="rev__r"><span class="rev__k">' + r[0] + '</span><span class="rev__v">' + r[1] + '</span></div>';
+      }).join('') +
+      '</div></div>' +
+      '<div class="rev__disc">本方案为个体化方案，仅供参考，需医生确认；具体药品与剂量以医生处方为准。用药期间如有明显不适，请及时联系随访医生。</div>' +
+      '</section>';
+  }
+
+  function render() {
+    return renderHero() + renderMods() + renderDoctor();
+  }
+
+  /* ===================== 5. 交互 ===================== */
+  /* 见 shared.js */
+  var toast = ZZ.toast;
+
+  /* 折叠动画：用实测高度驱动 max-height，展开后解除限制，内容变长也不会被裁 */
+  function setFold(el, open) {
+    clearTimeout(el._foldT);
+    el._open = open;
+    if (open) {
+      el.style.maxHeight = el.scrollHeight + 'px';
+      /* 过渡结束后解除高度限制，之后内容变长也不会被裁 */
+      el._foldT = setTimeout(function () {
+        if (el._open) el.style.maxHeight = 'none';
+      }, 340);
+    } else {
+      if (!el.style.maxHeight || el.style.maxHeight === 'none') {
+        el.style.maxHeight = el.scrollHeight + 'px';
+        void el.offsetHeight;           /* 先固定当前高度，再收起，才能有过渡 */
+      }
+      el.style.maxHeight = '0px';
+    }
+  }
+
+  function initModuleFold(root) {
+    root.querySelectorAll('.mod').forEach(function (mod) {
+      var h = mod.querySelector('.mod__h');
+      var b = mod.querySelector('.mod__b');
+      if (!h || !b) return;
+      h.addEventListener('click', function () {
+        var folded = mod.classList.toggle('is-fold');
+        h.setAttribute('aria-expanded', folded ? 'false' : 'true');
+        setFold(b, !folded);
+      });
+    });
+  }
+
+  function initDoctor(root) {
+    var btn = root.querySelector('#revBtn');
+    var card = root.querySelector('#revCard');
+    var body = root.querySelector('.rev__b');
+    if (!btn || !card || !body) return;
+    btn.addEventListener('click', function () {
+      var open = card.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      setFold(body, open);
+    });
+  }
+
+  /* 带上下文进入 AI 减重助理：入口场景 4（方案页），带上档案与疗程总周数；
+     本页定位「购药前、尚未开始用药」，故不传 week，避免注入「正在用药中」的错误上下文 */
+  function initAsk(root) {
+    var btn = root.querySelector('#askBtn');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var p = new URLSearchParams();
+      p.set('version', 'member');
+      p.set('entry', '4');
+      p.set('name', PLAN.name);
+      p.set('age', String(PLAN.age));
+      p.set('gender', PLAN.gender);
+      p.set('planName', PLAN.planName);
+      p.set('totalWeeks', '24');
+      location.href = AGENT_URL + '?' + p.toString();
+    });
+  }
+
+  /* 立即购药：进入处方审核 / 确认购买页 */
+  function initBuy(root) {
+    var btn = root.querySelector('#buyBtn');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      location.href = INVOICE_URL;
+    });
+  }
+
+  function initNav() {
+    var back = document.getElementById('backBtn');
+    if (back) {
+      back.addEventListener('click', function () {
+        if (history.length > 1) history.back();
+        else location.href = HOME_URL;
+      });
+    }
+    var more = document.getElementById('moreBtn');
+    if (more) {
+      more.addEventListener('click', function () {
+        toast('方案由卓正医生审核签发，可咨询随访医生了解详情');
+      });
+    }
+  }
+
+  function init() {
+    var view = document.getElementById('view');
+    if (!view) return;
+    view.innerHTML = render();
+    view.classList.add('view-in');
+
+    initModuleFold(view);
+    initDoctor(view);
+    /* 底部 CTA 写在 index.html 里，这里只绑事件 */
+    initAsk(document);
+    initBuy(document);
+    initNav();
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+})();

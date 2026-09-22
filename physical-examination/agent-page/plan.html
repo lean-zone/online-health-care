@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>个人健康改善计划书</title>
+  <style>
+    /* ===== 品牌专用字体（VI p30-38）：中文标题 方正粗圆 / 中文正文 方正准圆；西文与数字 Myriad Pro ===== */
+    @font-face {
+      font-family: "ZZ-CuYuan";
+      src: url("../branding-pic/fonts/方正粗圆_GBK.woff2") format("woff2"),
+           url("../branding-pic/fonts/方正粗圆_GBK.woff") format("woff");
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "ZZ-ZhunYuan";
+      src: url("../branding-pic/fonts/方正准圆_GBK.woff2") format("woff2"),
+           url("../branding-pic/fonts/方正准圆_GBK.ttf") format("truetype");
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "ZZ-Myriad";
+      src: url("../branding-pic/fonts/MyriadPro-Regular.otf") format("opentype");
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "ZZ-Myriad";
+      src: url("../branding-pic/fonts/MyriadPro-Bold.otf") format("opentype");
+      font-weight: 700;
+      font-display: swap;
+    }
+    /* 标题内西文：Myriad Pro Bold 映射到 400 字重，与方正粗圆的视觉字重匹配，且不触发合成加粗 */
+    @font-face {
+      font-family: "ZZ-Myriad-Title";
+      src: url("../branding-pic/fonts/MyriadPro-Bold.otf") format("opentype");
+      font-weight: 400;
+      font-display: swap;
+    }
+
+    /* ===== 主题（个人健康改善计划书）· 卓正医疗品牌视觉规范 VI 2025.01 ===== */
+    :root {
+      --radius: .625rem;
+
+      /* 卓正蓝三阶（核心色） */
+      --zz-blue-1: #006F8A;   /* 标志标准色 */
+      --zz-blue-2: #00809E;   /* 背景色 */
+      --zz-blue-3: #009BBF;   /* 背景色 */
+      /* 主要辅助色 */
+      --zz-cyan: #00BED6;     /* 蓝绿色 · 大面积背景 */
+      --zz-blue-light: #67C6DF; /* 蓝色 · 大面积背景 */
+      --zz-blue-pale: #D9EEF2;  /* 浅蓝色 · 提亮/文本 */
+      --zz-bg: #F6F6F6;       /* 浅灰色 · 背景 */
+      --zz-white: #FFFFFF;
+      --zz-text: #595757;     /* 深灰色 · 文本 */
+      --zz-accent-yellow: #FFEE6F; /* 极小比例点缀 */
+      --zz-accent-orange: #F18E1D; /* 极小比例点缀 */
+      --zz-accent-orange-deep: #9A5A0B; /* 橙色文字（保证对比度） */
+
+      /* 品牌专用字体：中文标题 方正粗圆 / 中文正文 方正准圆；西文与数字 Myriad Pro */
+      --zz-font-title: "ZZ-Myriad-Title", "ZZ-CuYuan", "ZZ-ZhunYuan", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --zz-font-body: "ZZ-Myriad", "ZZ-ZhunYuan", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --zz-font-en: "ZZ-Myriad", "Helvetica Neue", Arial, sans-serif;
+      --zz-font-sans: var(--zz-font-body); /* 兼容：正文默认字体 */
+
+      /* 语义变量映射到品牌色（以卓正蓝为主，辅助色小比例） */
+      --background: var(--zz-bg);
+      --foreground: var(--zz-text);
+      --card: var(--zz-white);
+      --card-foreground: var(--zz-text);
+      --popover: var(--zz-white);
+      --popover-foreground: var(--zz-text);
+      --primary: var(--zz-blue-1);
+      --primary-foreground: var(--zz-white);
+      --secondary: #E8F3F6;
+      --secondary-foreground: #00566B;
+      --muted: #EDF6F8;
+      --muted-foreground: #63696D;   /* 次要文本 · 对 #F6F6F6 对比度 ≥4.5:1 */
+      --accent: var(--zz-blue-pale);
+      --accent-foreground: #00556A;
+      --destructive: #C0392B;
+      --border: #E3E9EB;
+      --input: #E3E9EB;
+      --ring: var(--zz-blue-1);
+      --spacing: .25rem;
+      --container-3xl: 48rem;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; tab-size: 4; line-height: 1.5; }
+    body {
+      background: var(--background);
+      color: var(--foreground);
+      font-family: var(--zz-font-sans);
+      -webkit-tap-highlight-color: transparent;
+    }
+    h1, h2, h3, h4, h5, h6 { font-size: inherit; font-weight: inherit; }
+    a { color: inherit; text-decoration: inherit; }
+    strong { font-weight: 600; }
+    button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+    img, svg { vertical-align: middle; display: block; }
+
+    /* 中文标题 / 强调：方正粗圆 */
+    .serif, .section-title, .section-eyebrow, .hero-title,
+    .goal-title, .goal-tag, .module-title, .module-letter, .action-title,
+    .phase-title, .phase-num, .toc-num, .meta-value, .chip, .quote-card p {
+      font-family: var(--zz-font-title);
+    }
+
+    /* ===== 顶部导航 ===== */
+    .site-header {
+      position: sticky; top: 0; z-index: 20;
+      border-bottom: 1px solid var(--border);
+      background: color-mix(in oklab, var(--background) 88%, transparent);
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    }
+    /* 品牌色顶部点缀条（卓正蓝三阶渐变） */
+    .site-header::after {
+      content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px;
+      background: linear-gradient(90deg, var(--zz-blue-1) 0%, var(--zz-blue-3) 55%, var(--zz-cyan) 100%);
+    }
+    .header-inner {
+      max-width: var(--container-3xl); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.5rem;
+    }
+    .header-left { display: flex; align-items: center; gap: .375rem; }
+    .brand { display: flex; align-items: center; gap: .625rem; }
+    .brand-logo { height: 1.75rem; width: auto; object-fit: contain; }
+    .header-actions { display: flex; align-items: center; gap: .5rem; }
+    .section-nav { display: flex; align-items: center; gap: 1.25rem; font-size: .75rem; letter-spacing: .1em; color: var(--muted-foreground); }
+    .section-nav a { transition: color .2s; }
+    .section-nav a:hover { color: var(--primary); }
+    .icon-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 2rem; height: 2rem; border-radius: 9999px; color: var(--foreground);
+      transition: background .2s;
+    }
+    .icon-btn:hover { background: color-mix(in oklab, var(--muted) 70%, transparent); }
+    .refresh-link {
+      font-size: .75rem; letter-spacing: .1em; color: var(--muted-foreground);
+      display: flex; align-items: center; gap: .25rem; transition: color .2s;
+    }
+    .refresh-link:hover { color: var(--primary); }
+
+    /* ===== Hero ===== */
+    .hero { max-width: var(--container-3xl); margin: 0 auto; padding: 4rem 1.5rem 3.5rem; background: linear-gradient(180deg, #EAF4F8 0%, rgba(234,244,248,0) 100%); }
+    .hero-eyebrow { font-size: .75rem; font-weight: 500; letter-spacing: .4em; color: var(--primary); }
+    .hero-title { margin-top: 1.5rem; font-size: 2.5rem; font-weight: 700; line-height: 1.25; letter-spacing: .05em; }
+    .hero-desc { margin-top: 1.5rem; max-width: 36rem; line-height: 2; color: var(--muted-foreground); }
+    .hero-meta { margin-top: 2.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; }
+    .meta-card {
+      display: flex; align-items: flex-start; gap: 1rem;
+      border: 1px solid var(--border); border-radius: 1rem;
+      background: var(--card); padding: 1.25rem;
+    }
+    .meta-icon { margin-top: .125rem; color: var(--primary); flex-shrink: 0; }
+    .meta-label { font-size: .75rem; letter-spacing: .1em; color: var(--muted-foreground); }
+    .meta-value { margin-top: .25rem; font-size: 1.125rem; font-weight: 600; line-height: 1.4; }
+
+    /* ===== 目录 ===== */
+    .toc { margin-top: 2.5rem; border: 1px solid var(--border); border-radius: 1rem; background: var(--card); padding: 1.5rem; }
+    .toc-label { margin-bottom: 1rem; font-size: .75rem; font-weight: 500; letter-spacing: .3em; color: var(--muted-foreground); }
+    .toc-list { list-style: none; }
+    .toc-list li { border-bottom: 1px solid var(--border); }
+    .toc-list li:last-child { border-bottom: none; }
+    .toc-link { display: flex; align-items: center; justify-content: space-between; padding: .75rem 0; transition: color .2s; }
+    .toc-link:hover { color: var(--primary); }
+    .toc-link-inner { display: flex; align-items: baseline; gap: 1rem; }
+    .toc-num { font-size: .875rem; font-weight: 600; color: var(--primary); }
+    .toc-title { font-weight: 500; }
+    .toc-arrow { color: var(--muted-foreground); transition: transform .2s, color .2s; flex-shrink: 0; }
+    .toc-link:hover .toc-arrow { transform: translateX(4px); color: var(--primary); }
+    .toc-empty { font-size: .875rem; color: var(--muted-foreground); }
+
+    /* ===== 章节 ===== */
+    .section { max-width: var(--container-3xl); margin: 0 auto; padding: 3.5rem 1.5rem; scroll-margin-top: 5rem; }
+    .section--tinted { background: color-mix(in oklab, var(--card) 60%, transparent); }
+    .section-head { padding-top: 2rem; }
+    .section-eyebrow {
+      display: flex; align-items: center; gap: .75rem;
+      font-size: .875rem; font-weight: 600; letter-spacing: .3em; color: var(--primary);
+    }
+    .section-eyebrow::before { content: ''; width: 2.5rem; height: 1px; background: color-mix(in oklab, var(--primary) 60%, transparent); }
+    .section-title { margin-top: 1rem; font-size: 1.875rem; font-weight: 700; line-height: 1.3; letter-spacing: .04em; }
+
+    /* 子标题（## xxx） */
+    .sub-title {
+      display: flex; align-items: center; gap: .75rem;
+      margin: 3rem 0 1.25rem;
+      font-family: var(--zz-font-sans);
+      font-size: 1.25rem; font-weight: 600;
+    }
+    .sub-title::before { content: ''; width: .25rem; height: 1.25rem; border-radius: 9999px; background: var(--primary); flex-shrink: 0; }
+
+    /* 小标签（“接下来具体怎么做”等） */
+    .section-caption { margin-top: 2rem; margin-bottom: 1rem; font-size: .75rem; font-weight: 500; letter-spacing: .3em; color: var(--muted-foreground); }
+
+    /* 三级标题（### xxx） */
+    .h4 { margin: 1.5rem 0 .75rem; font-family: var(--zz-font-sans); font-size: 1.0625rem; font-weight: 600; color: var(--foreground); }
+
+    /* ===== 正文排版 ===== */
+    .prose p { line-height: 2; color: var(--foreground); }
+    .prose p + p { margin-top: 1.5rem; } /* 段间距需大于行距（VI 排版规则） */
+    .prose ul, .prose ol { margin-top: 1.5rem; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .prose ul > li, .prose ol > li { position: relative; padding-left: 1.25rem; line-height: 1.875; color: var(--foreground); }
+    .prose ul > li::before { content: ''; position: absolute; left: .125rem; top: .8em; width: .4rem; height: .4rem; border-radius: 9999px; background: var(--primary); }
+    .prose ol > li { counter-increment: p-ol; }
+    .prose ol { counter-reset: p-ol; }
+    .prose ol > li::before {
+      content: counter(p-ol); position: absolute; left: 0; top: .35em;
+      display: flex; align-items: center; justify-content: center;
+      width: 1.25rem; height: 1.25rem; border-radius: 9999px;
+      background: var(--accent); font-family: var(--zz-font-en); font-size: .7rem; font-weight: 700; color: var(--accent-foreground);
+    }
+
+    /* 强调卡（> 引用） */
+    .quote-card { margin-top: 2rem; border-radius: 1rem; background: var(--accent); padding: 1.5rem; }
+    .quote-card p { font-size: 1.125rem; font-weight: 600; line-height: 2; color: var(--accent-foreground); }
+    .quote-card p + p { margin-top: .5rem; }
+
+    /* 关键词 chips */
+    .chips { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .75rem; }
+    .chip {
+      border: 1px solid color-mix(in oklab, var(--primary) 30%, transparent);
+      background: var(--card); border-radius: 9999px; padding: .5rem 1.25rem;
+      font-size: 1rem; font-weight: 600; color: var(--primary);
+    }
+
+    /* ===== 02 目标卡片 ===== */
+    .goals { margin-top: 3rem; display: flex; flex-direction: column; gap: 2rem; }
+    .goal-card { overflow: hidden; border: 1px solid var(--border); border-radius: 1.5rem; background: var(--card); box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+    .goal-head {
+      display: flex; align-items: center; gap: 1rem;
+      border-bottom: 1px solid var(--border);
+      background: color-mix(in oklab, var(--secondary) 50%, transparent);
+      padding: 1.25rem 1.75rem;
+    }
+    .goal-icon { color: var(--primary); flex-shrink: 0; }
+    .goal-tag { font-size: .75rem; font-weight: 500; letter-spacing: .3em; color: var(--primary); }
+    .goal-title { margin-top: .25rem; font-size: 1.25rem; font-weight: 700; line-height: 1.4; }
+    .goal-body { padding: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; }
+    .goal-quant { border-radius: .75rem; background: color-mix(in oklab, var(--accent) 70%, transparent); padding: 1rem 1.25rem; }
+    .goal-quant-label { font-size: .75rem; font-weight: 500; letter-spacing: .15em; color: var(--accent-foreground); }
+    .goal-quant-value { margin-top: .375rem; font-weight: 500; line-height: 1.625; color: var(--accent-foreground); }
+    .goal-row { display: grid; grid-template-columns: 110px 1fr; gap: .375rem; }
+    .goal-row-label { font-size: .875rem; font-weight: 500; color: var(--primary); }
+    .goal-row-value { line-height: 2; color: var(--foreground); }
+    @media (max-width: 640px) {
+      .goal-row { grid-template-columns: 1fr; gap: .25rem; }
+      .goal-row-label { margin-top: .5rem; }
+    }
+
+    /* ===== 03 行动模块 ===== */
+    .module-head { display: flex; align-items: center; gap: 1rem; margin-top: 3.5rem; }
+    .module-letter {
+      width: 2.75rem; height: 2.75rem; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 1rem; background: var(--primary);
+      font-size: 1rem; font-weight: 700; color: var(--primary-foreground);
+    }
+    .module-title { display: flex; align-items: center; gap: .75rem; font-size: 1.5rem; font-weight: 700; line-height: 1.3; }
+    .module-icon { color: var(--primary); }
+    .action-list { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 1.25rem; }
+    .action-card { border: 1px solid var(--border); border-radius: 1rem; background: var(--card); padding: 1.5rem; box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+    .action-title { font-size: 1.125rem; font-weight: 600; line-height: 1.5; }
+    .action-text { margin-top: .75rem; line-height: 2; color: var(--foreground); }
+    .planb { margin-top: 1rem; border-radius: .75rem; background: color-mix(in oklab, var(--secondary) 60%, transparent); padding: .75rem 1rem; font-size: .875rem; line-height: 1.625; color: var(--secondary-foreground); }
+    .planb strong { color: var(--primary); }
+
+    /* ===== 04 阶段时间线 ===== */
+    .timeline { margin-top: 3rem; position: relative; display: flex; flex-direction: column; gap: 2rem; }
+    .timeline::before { content: ''; position: absolute; top: .5rem; bottom: .5rem; left: 1.25rem; width: 1px; background: var(--border); }
+    @media (min-width: 768px) { .timeline::before { left: 1.5rem; } }
+    .timeline-item { position: relative; padding-left: 3.5rem; }
+    @media (min-width: 768px) { .timeline-item { padding-left: 4rem; } }
+    .timeline-num {
+      position: absolute; top: .25rem; left: 0;
+      width: 2.5rem; height: 2.5rem;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 9999px; background: var(--primary);
+      font-size: .75rem; font-weight: 700; color: var(--primary-foreground);
+    }
+    @media (min-width: 768px) { .timeline-num { width: 3rem; height: 3rem; font-size: .875rem; } }
+    .phase-card { border: 1px solid var(--border); border-radius: 1.5rem; background: var(--card); padding: 1.75rem; box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+    .phase-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1rem; }
+    .phase-title { font-size: 1.25rem; font-weight: 700; }
+    .phase-days { font-size: .875rem; font-weight: 500; letter-spacing: .15em; color: var(--primary); }
+    .phase-goal { margin-top: .75rem; line-height: 2; color: var(--muted-foreground); }
+    .phase-list-label { margin-top: 1.25rem; margin-bottom: .75rem; font-size: .75rem; font-weight: 500; letter-spacing: .3em; color: var(--muted-foreground); }
+    .phase-list { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .phase-list li { display: flex; gap: .75rem; align-items: flex-start; }
+    .phase-num {
+      width: 1.5rem; height: 1.5rem; flex-shrink: 0; margin-top: .125rem;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 9999px; background: var(--accent);
+      font-size: .75rem; font-weight: 600; color: var(--accent-foreground);
+    }
+    .phase-list-item { line-height: 1.625; color: var(--foreground); }
+    .phase-foot { margin-top: 1.25rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .75rem; }
+    .phase-complete { border-radius: .75rem; background: color-mix(in oklab, var(--accent) 70%, transparent); padding: .75rem 1rem; font-size: .875rem; line-height: 1.625; color: var(--accent-foreground); }
+    .phase-miss { border-radius: .75rem; background: color-mix(in oklab, var(--secondary) 60%, transparent); padding: .75rem 1rem; font-size: .875rem; line-height: 1.625; color: var(--secondary-foreground); }
+    .phase-foot strong { font-weight: 600; }
+
+    /* ===== 05 指标追踪 ===== */
+    .table-wrap { overflow: hidden; border: 1px solid var(--border); border-radius: 1rem; background: var(--card); box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+    .plan-table { width: 100%; text-align: left; font-size: .875rem; border-collapse: collapse; }
+    .plan-table thead tr { border-bottom: 1px solid var(--border); background: color-mix(in oklab, var(--secondary) 60%, transparent); }
+    .plan-table th { padding: 1rem 1.25rem; font-weight: 500; font-size: .75rem; letter-spacing: .1em; color: var(--secondary-foreground); white-space: nowrap; }
+    .plan-table td { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); line-height: 1.625; color: var(--foreground); }
+    .plan-table tr:last-child td { border-bottom: none; }
+    .plan-table tbody tr:nth-child(even) td { background: color-mix(in oklab, var(--background) 50%, transparent); }
+    .plan-table td:first-child { font-weight: 500; white-space: nowrap; color: var(--primary); }
+    .check-grid { margin-top: 1.25rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .75rem; }
+    .check-item { border: 1px solid var(--border); border-radius: .75rem; background: var(--card); padding: 1rem 1.25rem; font-size: .875rem; font-weight: 500; line-height: 1.5; }
+    .plain-list { margin-top: 1rem; display: flex; flex-direction: column; gap: .5rem; }
+    .plain-list li { position: relative; padding-left: 1.25rem; line-height: 1.875; color: var(--foreground); }
+    .plain-list li::before { content: ''; position: absolute; left: .125rem; top: .8em; width: .4rem; height: .4rem; border-radius: 9999px; background: var(--primary); }
+
+    /* ===== Loading ===== */
+    .plan-loading { max-width: var(--container-3xl); margin: 0 auto; padding: 5rem 1.5rem; text-align: center; }
+    .loading-ring {
+      width: 2.75rem; height: 2.75rem; margin: 0 auto;
+      border: 3px solid color-mix(in oklab, var(--primary) 25%, transparent);
+      border-top-color: var(--primary); border-radius: 9999px;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-text { margin-top: 1.25rem; font-size: 1rem; font-weight: 500; }
+    .loading-sub { margin-top: .5rem; font-size: .875rem; color: var(--muted-foreground); }
+    .loading-stream {
+      margin-top: 1.25rem; max-height: 320px; overflow: auto;
+      width: 100%; box-sizing: border-box; text-align: left;
+      padding: .875rem 1rem;
+      background: color-mix(in oklab, var(--primary) 5%, transparent);
+      border: 1px dashed color-mix(in oklab, var(--primary) 30%, transparent);
+      border-radius: .75rem;
+      font-size: .8125rem; line-height: 1.7; color: var(--muted-foreground);
+      white-space: pre-wrap; word-break: break-word;
+    }
+    .retry-btn {
+      margin-top: 1.5rem; display: inline-block;
+      border: 1px solid var(--primary); border-radius: 9999px;
+      color: var(--primary); padding: .625rem 1.5rem; font-size: .875rem; font-weight: 500;
+      transition: background .2s, color .2s;
+    }
+    .retry-btn:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* ===== 结尾寄语（05 末尾 AI 段落自动落入 prose） ===== */
+
+    /* ===== 04 随访计划：分块 + 导流组件 ===== */
+    .followup-block { margin-top: 1.5rem; }
+    .followup-title { display: flex; align-items: center; gap: .625rem; margin-bottom: .625rem; font-family: var(--zz-font-sans); font-size: 1.0625rem; font-weight: 700; }
+    .followup-tag { height: 1.5rem; min-width: 3.25rem; padding: 0 .5rem; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; border-radius: .375rem; background: color-mix(in srgb, var(--primary) 12%, transparent); color: var(--primary); font-family: inherit; font-size: .8125rem; font-weight: 700; white-space: nowrap; line-height: 1; }
+    /* 导流按钮 */
+    .fu-btn { width: 100%; margin-top: 1rem; border: none; cursor: pointer; font-family: inherit; font-size: .9375rem; font-weight: 600; padding: .75rem 1rem; border-radius: .75rem; background: var(--primary); color: var(--primary-foreground); transition: transform .15s ease, box-shadow .15s ease; }
+    .fu-btn:active { transform: scale(.98); }
+    .fu-btn--outline { background: var(--card); color: var(--primary); box-shadow: inset 0 0 0 1.5px var(--primary); }
+    /* 线上随访提醒勾选 */
+    .fu-check { display: flex; align-items: center; gap: .625rem; margin-top: 1rem; padding: .75rem .875rem; background: var(--card); border: 1px solid var(--border); border-radius: .75rem; font-size: .9375rem; color: var(--foreground); cursor: pointer; user-select: none; transition: background .15s ease, border-color .15s ease; }
+    .fu-check:active { transform: scale(.99); }
+    .fu-check:has(input:checked) { background: color-mix(in srgb, var(--primary) 8%, transparent); border-color: var(--primary); }
+    .fu-check input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .fu-check__box { width: 1.25rem; height: 1.25rem; flex-shrink: 0; border-radius: .375rem; border: 1.5px solid var(--primary); background: var(--card); display: inline-flex; align-items: center; justify-content: center; transition: background .15s ease, border-color .15s ease; }
+    .fu-check__icon { display: inline-flex; align-items: center; justify-content: center; color: var(--primary); flex-shrink: 0; }
+    .fu-check__text { flex: 1; line-height: 1.5; }
+    .fu-check:has(input:checked) .fu-check__box { background: var(--primary); border-color: var(--primary); }
+    .fu-check:has(input:checked) .fu-check__box::after { content: '✓'; color: var(--primary-foreground); font-size: .875rem; line-height: 1; font-weight: 700; }
+
+    /* ===== 04「让计划成为行动」= 健康辅助功能选择 ===== */
+    .section--launch { background: linear-gradient(180deg, #EAF4F8 0%, rgba(234,244,248,0) 100%); scroll-margin-top: 5rem; }
+    .launch-text { line-height: 2; color: var(--foreground); margin-bottom: 1.5rem; }
+    .hm-panel { margin-top: 2rem; }
+    /* 功能项：功能名（上）→ 卡片（标题+示例）→ 功能说明（下）；三列（移动端单列） */
+    .hm-fs { display: grid; grid-template-columns: 1fr; gap: 2.25rem 1.5rem; }
+    /* 桌面三列：每张卡片宽高比接近 1:1（圆角正方形） */
+    @media (min-width: 880px) {
+      .hm-fs { grid-template-columns: repeat(3, 1fr); }
+      .hm-f__card { min-height: 0; aspect-ratio: 1 / 1; }
+    }
+    /* 每张功能：功能名居中 → 说明 → 卡片 → 勾选按钮 */
+    .hm-f { display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; min-width: 0; }
+    /* 功能名（卡上方，居中粗体） */
+    .hm-f__name-center { font-family: var(--zz-font-sans); font-size: 1.0625rem; font-weight: 700; color: var(--primary); margin: 0; letter-spacing: .05em; text-align: center; align-self: center; }
+    /* 说明（卡上方居中） */
+    .hm-f__desc { margin-top: .625rem; font-size: .8125rem; line-height: 1.85; color: var(--muted-foreground); text-align: center; width: 100%; }
+    .hm-f__desc strong { color: var(--foreground); font-weight: 700; }
+    /* 卡片（默认方形、内容垂直水平居中；选中态卓正蓝描边） */
+    .hm-f__card { width: 100%; margin-top: 1rem; padding: 1rem; border: 1px solid var(--border); border-radius: 1.125rem; background: var(--card); box-shadow: 0 1px 2px rgba(0,0,0,.05); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 12rem; transition: border-color .15s ease, box-shadow .15s ease; }
+    .hm-f:has(input:checked) .hm-f__card { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary), 0 6px 16px color-mix(in srgb, var(--primary) 8%, transparent); }
+    /* 卡内顶部居中标题（个性化） */
+    .hm-f__title-center { font-family: var(--zz-font-sans); font-size: 1rem; font-weight: 700; color: var(--foreground); margin: 0 0 0.625rem; line-height: 1.3; }
+    /* 勾选按钮行（卡片下方独立一行，无描边，强制居中） */
+    .hm-f__check-row { margin-top: 1rem; display: inline-flex; align-items: center; justify-content: center; gap: .5rem; font-size: .9375rem; color: var(--foreground); cursor: pointer; user-select: none; align-self: center; }
+    .hm-f__check-row .hm-f__check-text { font-weight: 500; }
+    .hm-f:has(input:checked) .hm-f__check-text { color: var(--primary); font-weight: 600; }
+    .hm-check { position: relative; display: inline-flex; flex-shrink: 0; }
+    .hm-check input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .hm-check__box { width: 1rem; height: 1rem; border-radius: .375rem; border: 1.5px solid var(--primary); background: var(--card); display: inline-flex; align-items: center; justify-content: center; transition: background .15s ease, border-color .15s ease; }
+    .hm-check input:checked + .hm-check__box { background: var(--primary); border-color: var(--primary); }
+    .hm-check input:checked + .hm-check__box::after { content: '✓'; color: var(--primary-foreground); font-size: .6875rem; font-weight: 700; line-height: 1; }
+    /* 定制食谱：橙色（极小比例点缀） */
+    .hm-f--recipe .hm-f__card { background: linear-gradient(160deg, color-mix(in srgb, var(--zz-accent-orange) 12%, var(--card)) 0%, var(--card) 60%); border-color: color-mix(in srgb, var(--zz-accent-orange) 32%, var(--card)); }
+    /* 每日打卡：蓝绿色（辅助色） */
+    .hm-f--daily .hm-f__card { background: linear-gradient(160deg, color-mix(in srgb, var(--zz-cyan) 12%, var(--card)) 0%, var(--card) 60%); border-color: color-mix(in srgb, var(--zz-cyan) 36%, var(--card)); }
+    /* 每周回顾：蓝色（辅助色） */
+    .hm-f--weekly .hm-f__card { background: linear-gradient(160deg, color-mix(in srgb, var(--zz-blue-light) 18%, var(--card)) 0%, var(--card) 60%); border-color: color-mix(in srgb, var(--zz-blue-light) 42%, var(--card)); }
+    .hm-recipe-day { font-size: .75rem; color: var(--muted-foreground); margin: 0 0 .375rem; }
+    .hm-recipe-day b { color: var(--zz-accent-orange-deep); font-weight: 700; }
+    .hm-recipe-line { display: flex; align-items: baseline; gap: .5rem; font-size: .75rem; line-height: 1.7; color: var(--foreground); width: 100%; }
+    .hm-recipe-line em { flex-shrink: 0; width: 2.4em; font-style: normal; font-weight: 600; color: var(--zz-accent-orange-deep); font-size: .6875rem; }
+    .hm-recipe-line span { flex: 1; }
+    /* 每日打卡 widget 卡片（居中：MEMO 标题 / 分隔 / emoji 任务 / 改善点 / 今天已完成） */
+    .hm-f__card--widget { justify-content: center; padding: 1rem .875rem 1rem; }
+    .memo-widget__eyebrow { font-size: .875rem; font-weight: 500; letter-spacing: .12em; color: var(--foreground); }
+    .memo-widget__tagline { margin-top: .25rem; font-size: .6875rem; letter-spacing: .05em; color: var(--muted-foreground); }
+    .memo-widget__divider { margin: .625rem auto; width: 2rem; border: 0; border-top: 1px solid var(--border); }
+    .memo-widget__task { display: flex; align-items: center; justify-content: center; gap: .5rem; margin-top: 0; }
+    .memo-widget__emoji { font-size: 1.5rem; line-height: 1; }
+    .memo-widget__task-title { font-family: var(--zz-font-sans); font-size: 1.0625rem; font-weight: 700; line-height: 1.35; color: var(--foreground); }
+    .memo-widget__benefit { margin-top: .375rem; font-size: .6875rem; color: var(--muted-foreground); letter-spacing: .05em; }
+    .memo-widget__done { margin-top: 1.25rem; display: inline-flex; align-items: center; gap: .5rem; border: 1px solid var(--border); border-radius: 9999px; padding: .625rem 1.25rem; font-size: .9375rem; color: var(--foreground); background: var(--card); }
+    .memo-widget__check { display: inline-flex; align-items: center; justify-content: center; width: 1.5rem; height: 1.5rem; border-radius: 9999px; background: var(--primary); color: var(--primary-foreground); }
+    /* 每周回顾进度条 + 下周重点 */
+    .memo-weekly__progress { position: relative; width: 100%; height: .5rem; border-radius: 9999px; background: color-mix(in srgb, var(--primary) 10%, transparent); overflow: hidden; margin-top: .5rem; }
+    .memo-weekly__progress-bar { position: absolute; left: 0; top: 0; bottom: 0; background: linear-gradient(90deg, var(--zz-blue-1) 0%, var(--zz-blue-3) 100%); border-radius: 9999px; }
+    .memo-weekly__progress-value { position: absolute; right: .5rem; top: 50%; transform: translateY(-50%); font-size: .625rem; font-weight: 700; color: var(--primary); }
+    .hm-weekly-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: .375rem; margin-top: .5rem; width: 100%; }
+    .hm-stat { display: flex; flex-direction: column; align-items: center; padding: .375rem .125rem; border-radius: .5rem; background: color-mix(in srgb, var(--primary) 6%, transparent); }
+    .hm-stat b { font-family: var(--zz-font-sans); font-size: 1rem; font-weight: 700; color: var(--primary); line-height: 1.2; }
+    .hm-stat i { font-style: normal; font-size: .6875rem; font-weight: 500; margin-left: 1px; }
+    .hm-stat small { font-size: .625rem; color: var(--muted-foreground); margin-top: .125rem; }
+    .memo-weekly__hint { margin-top: .5rem; display: flex; align-items: center; gap: .375rem; padding: .375rem .625rem; border-radius: .5rem; background: color-mix(in srgb, var(--primary) 8%, transparent); text-align: left; width: 100%; }
+    .memo-weekly__hint-tag { flex-shrink: 0; font-size: .625rem; font-weight: 700; color: var(--primary); letter-spacing: .05em; padding: .125rem .4375rem; border-radius: 9999px; background: var(--card); }
+    .memo-weekly__hint-text { font-size: .6875rem; color: var(--accent-foreground); line-height: 1.5; }
+    .hm-confirm { margin-top: 2rem; }
+
+    /* ===== Footer ===== */
+    .site-footer { border-top: 1px solid var(--border); padding: 2.5rem 1rem; text-align: center; font-size: .75rem; letter-spacing: .1em; color: var(--muted-foreground); }
+
+    /* ===== Toast ===== */
+    .toast {
+      position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+      background: var(--zz-blue-1); color: var(--zz-white);
+      padding: .625rem 1.25rem; border-radius: 9999px; font-size: .875rem;
+      opacity: 0; pointer-events: none; transition: opacity .25s; z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,.12);
+    }
+    .toast.is-visible { opacity: 1; }
+
+    /* ===== 字体收口 ===== */
+    /* 中文标题 / 强调统一走方正粗圆；方正粗圆本身即粗体字形，不再叠加字重，避免浏览器合成加粗 */
+    .hero-title, .section-title, .section-eyebrow, .sub-title, .h4, .goal-title, .goal-tag,
+    .module-title, .action-title, .phase-title, .meta-value, .chip, .quote-card p,
+    .followup-title, .hm-f__name-center, .hm-f__title-center, .memo-widget__task-title {
+      font-family: var(--zz-font-title);
+      font-weight: 400;
+    }
+    /* 西文与数字统一使用 Myriad Pro */
+    .hero-eyebrow, .memo-widget__eyebrow, .module-letter, .phase-num, .toc-num,
+    .timeline-num, .memo-weekly__progress-value, .hm-stat b {
+      font-family: var(--zz-font-en);
+    }
+
+    /* ===== 移动端适配（手机优先） ===== */
+    @media (max-width: 768px) {
+      .header-inner { padding: .75rem 1rem; }
+      .section-nav { display: none; }
+      .brand-logo { height: 1.5rem; }
+      .hero { padding: 2.5rem 1rem 2rem; }
+      .hero-eyebrow { letter-spacing: .25em; }
+      .hero-title { margin-top: 1rem; font-size: 1.75rem; line-height: 1.35; }
+      .hero-desc { margin-top: 1rem; line-height: 1.9; font-size: .9375rem; }
+      .hero-meta { margin-top: 1.5rem; grid-template-columns: 1fr; }
+      .meta-card { padding: 1rem; }
+      .toc { margin-top: 1.5rem; padding: 1.25rem; }
+      .toc-link { padding: .625rem 0; }
+      .section { padding: 2.5rem 1rem 2rem; scroll-margin-top: 4rem; }
+      .section-eyebrow { font-size: .8125rem; letter-spacing: .2em; }
+      .section-title { margin-top: .75rem; font-size: 1.375rem; }
+      .sub-title { margin: 2rem 0 1rem; font-size: 1.125rem; }
+      .goal-head { padding: 1rem 1.25rem; gap: .75rem; }
+      .goal-body { padding: 1.25rem; gap: 1rem; }
+      .goal-title { font-size: 1.125rem; }
+      .goal-card { border-radius: 1.25rem; }
+      .module-head { margin-top: 2.5rem; gap: .75rem; }
+      .module-letter { width: 2.25rem; height: 2.25rem; border-radius: .75rem; font-size: .875rem; }
+      .module-title { font-size: 1.25rem; }
+      .action-card { padding: 1.25rem; }
+      .timeline { gap: 1.5rem; }
+      .timeline-item { padding-left: 3.25rem; }
+      .phase-card { padding: 1.25rem; }
+      .phase-foot { grid-template-columns: 1fr; }
+      .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .plan-table { min-width: 30rem; }
+      .plan-table th, .plan-table td { padding: .75rem .875rem; }
+      .check-grid { grid-template-columns: 1fr; }
+      .quote-card { padding: 1.25rem; }
+      .quote-card p { font-size: 1rem; }
+      .chips { gap: .5rem; }
+      .chip { font-size: .875rem; padding: .375rem 1rem; }
+      .prose p { line-height: 1.9; }
+      .plan-loading { padding: 4rem 1rem; }
+      .advisor { right: 1rem; bottom: 1rem; }
+      .advisor__icon { width: 3rem; height: 3rem; }
+      .advisor__tip { display: none; }
+    }
+    /* 超小屏（<380px）进一步收紧 */
+    @media (max-width: 380px) {
+      .hero-title { font-size: 1.5rem; }
+      .section-title { font-size: 1.25rem; }
+      .timeline-item { padding-left: 2.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- 顶部导航 -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-left">
+        <button class="icon-btn" id="backBtn" aria-label="返回" title="返回">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6L9 12L15 18"/></svg>
+        </button>
+        <div class="brand">
+          <img class="brand-logo" src="../pic/卓正医疗标准Logo透明底.png" alt="卓正医疗" />
+        </div>
+      </div>
+      <div class="header-actions">
+        <nav class="section-nav" id="sectionNav" aria-label="章节导航"></nav>
+        <button class="icon-btn" id="refreshBtn" aria-label="重新生成" title="重新生成">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12a8 8 0 0 1 14-4.9M20 12a8 8 0 0 1-14 4.9"/><path d="M18 4v4h-4M6 20v-4h4"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="planHero">
+      <p class="hero-eyebrow">PERSONAL HEALTH IMPROVEMENT PLAN</p>
+      <h1 class="hero-title">《个人健康改善计划书》</h1>
+      <p class="hero-desc">不追求完美，只追求持续。这 30 天，只需要比上个月多走几步路、少喝几杯含糖饮料，就已经在往正确的方向走了。</p>
+      <div class="hero-meta">
+        <div class="meta-card">
+          <svg class="meta-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <div>
+            <p class="meta-label">计划书主人</p>
+            <p class="meta-value" id="metaOwner">—</p>
+          </div>
+        </div>
+        <div class="meta-card">
+          <svg class="meta-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M3 10h18"/><path d="M8 2v4"/><path d="M17 14h-6"/><path d="M13 18H7"/><path d="M7 14h.01"/><path d="M17 18h.01"/></svg>
+          <div>
+            <p class="meta-label">计划周期</p>
+            <p class="meta-value" id="metaPeriod">—</p>
+          </div>
+        </div>
+      </div>
+      <div class="toc">
+        <p class="toc-label">目录 CONTENTS</p>
+        <ol class="toc-list" id="tocList"></ol>
+      </div>
+    </section>
+
+    <!-- 加载状态 -->
+    <section class="plan-loading" id="planLoading" hidden>
+      <div class="loading-ring" aria-hidden="true"></div>
+      <p class="loading-text">正在结合您的体检结果与回答，生成专属计划书…</p>
+      <p class="loading-sub">生成内容较长，约需 30–60 秒，请耐心等待</p>
+      <pre class="loading-stream" id="planStream" hidden></pre>
+    </section>
+
+    <!-- 计划书内容（渲染结果） -->
+    <div id="planContent"></div>
+  </main>
+
+  <footer class="site-footer">
+    卓正医疗 · 个人健康改善计划书 · <span id="footerDate"></span>
+  </footer>
+
+  <!-- 轻提示 -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../../llm-config.js"></script>
+  <script src="plan-prompt.js"></script>
+  <script src="plan-offline.js"></script>
+  <script src="plan.js"></script>
+</body>
+</html>

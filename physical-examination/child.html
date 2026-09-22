@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>体检报告解读 · Physical Examination</title>
+  <meta name="description" content="专业、清晰、易懂的体检报告智能解读，帮您读懂每一项指标背后的健康含义。" />
+  <!-- 品牌专用字体由 styles.css 的 @font-face 本地加载，无需外部字体服务 -->
+  <link rel="stylesheet" href="styles.css?v=20260912" />
+</head>
+<body>
+  <div class="phone">
+    <!-- 顶部导航 -->
+    <header class="topbar">
+      <button class="topbar__back" aria-label="返回">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M15 6L9 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="topbar__title">体检报告解读</div>
+      <button class="topbar__more" aria-label="更多">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- 报告切换菜单 -->
+      <nav class="topbar__menu" id="reportMenu" hidden>
+        <a class="topbar__menu-item" href="male.html">张先生 · 38 岁</a>
+        <a class="topbar__menu-item" href="female.html">李女士 · 36 岁</a>
+        <a class="topbar__menu-item" href="child.html">乐乐 · 8 岁</a>
+        <a class="topbar__menu-item" href="elder.html">王阿姨 · 68 岁</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <!-- ① 健康总览 -->
+      <section class="module module--overview">
+        <div class="module__head">
+          <h2 class="module__title"><span class="module__num">01</span>健康总览</h2>
+        </div>
+
+        <div class="overview">
+          <div class="overview__head">
+            <span class="overview__eyebrow">2026 年度儿童健康评估</span>
+            <h1 class="overview__name">乐乐 · 8 岁 2 个月</h1>
+            <p class="overview__meta">儿童综合体检 · 报告日期 2026-08-18</p>
+            <div class="overview__tags">
+              <span class="tag tag--good">整体健康</span>
+              <span class="tag tag--warn">4 项需关注</span>
+            </div>
+          </div>
+
+          <div class="overview__ai">
+            <p class="overview__ai-text">乐乐的整体身体底子很好，本次体检未发现需要紧急处理的问题。需要家长留意的是<b>体重长得有点快、视力下降（疑似近视）、牙齿有龋坏、血脂有一项接近偏高</b>，这四样都还处在早期阶段，通过调整饮食、增加运动、改善用眼和口腔习惯，多数可以改善。其中<b>视力与口腔问题建议尽快安排眼科、口腔科检查</b>。同时，如果您需要，我们可以为您和孩子免费定制一份<b>个人健康改善计划书</b>，帮助孩子控制体重、改善视力与口腔健康。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ② 重点问题 -->
+      <section class="module">
+        <div class="module__head">
+          <h2 class="module__title"><span class="module__num">02</span>重点问题</h2>
+        </div>
+
+        <article class="issue">
+          <header class="issue__head">
+            <h3 class="issue__summary">体重长得有点快（接近肥胖）</h3>
+            <a class="issue__link" href="#" data-key="growth">查看详情</a>
+          </header>
+
+          <div class="issue__block">
+            <p>乐乐的体重已经到了<b>"接近肥胖"的范围，这并不等于"长得壮"</b>。儿童期的肥胖很容易一路带到青春期和成年，以后血脂、血糖出问题的风险更高。好在现在还是临界阶段，最有效的办法不是节食，而是<b>先稳住体重不再涨</b>——随着身高继续长，体重指数会自然回到正常。这件事越早做越省力。</p>
+          </div>
+        </article>
+
+        <article class="issue">
+          <header class="issue__head">
+            <h3 class="issue__summary">视力下降（疑似近视）</h3>
+            <a class="issue__link" href="#" data-key="eye">查看详情</a>
+          </header>
+
+          <div class="issue__block">
+            <p>8 岁前后是<b>近视发展最快、也是干预效果最好的窗口期</b>。验光已经提示双眼存在近视，如果现在不明确真实度数、不及时干预，度数很可能一年比一年加深，甚至走向高度近视。所以这件事要<b>"趁早办"</b>，不要等孩子看不清黑板了再处理。</p>
+          </div>
+        </article>
+
+        <article class="issue">
+          <header class="issue__head">
+            <h3 class="issue__summary">龋齿（恒磨牙龋坏）</h3>
+            <a class="issue__link" href="#" data-key="oral">查看详情</a>
+          </header>
+
+          <div class="issue__block">
+            <p>刚萌出的"六龄齿"是<b>要陪孩子用一辈子的牙齿</b>，现在已经出现龋坏。蛀洞不会自己长好，拖得越久坏得越深，一旦伤到牙神经，补牙就变成了又贵又遭罪的根管治疗。好在早期龋处理起来很简单，孩子几乎没感觉，<b>早处理就是最省钱的方案</b>。</p>
+          </div>
+        </article>
+
+        <article class="issue">
+          <header class="issue__head">
+            <h3 class="issue__summary">甘油三酯接近偏高</h3>
+            <a class="issue__link" href="#" data-key="digest">查看详情</a>
+          </header>
+
+          <div class="issue__block">
+            <p>孩子出现甘油三酯偏高，是典型的<b>"吃出来的信号"</b>——这个年纪出现，多半不是疾病或遗传，而是含糖饮料、油炸零食和运动太少叠加的结果。好在它比血脂异常更容易改善，<b>调整饮食习惯后几个月内就能回到正常</b>，这也是帮孩子养成一辈子好习惯的好契机。</p>
+          </div>
+        </article>
+      </section>
+
+      <!-- ③ 各系统健康状态（儿童定制：方案B） -->
+      <section class="module">
+        <div class="module__head">
+          <h2 class="module__title"><span class="module__num">03</span>各系统健康状态</h2>
+        </div>
+
+        <!-- 整图（SVG 绘制）+ 透明热区 -->
+        <div class="sysmap">
+          <!-- 上方 5px 留白 + 整体右移 5px -->
+          <div class="sysmap__canvas">
+            <svg class="sysmap__svg" viewBox="0 0 1212 842" xmlns="http://www.w3.org/2000/svg" aria-label="儿童各系统健康状态示意图">
+              <defs>
+                <style>
+                  .box { fill: #FFFFFF; }
+                  .box--warn { fill: #FDF1E3; }        /* 需关注：浅橙（卓正橙点缀） */
+                  .box--good { fill: #D9EEF2; }         /* 正常：卓正浅蓝 */
+                  .box--none { fill: #F0F1F3; }         /* 无数据：浅灰 */
+                  .box-text {
+                    font-family: var(--zz-font-title);
+                    font-size: 38px; font-weight: 400; fill: #3C4448;
+                    text-anchor: middle; dominant-baseline: middle;
+                  }
+                  .lead { fill: none; stroke: #A7B2B8; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 8 6; }
+                  .end-dot { fill: #A7B2B8; }
+                </style>
+                <!-- 阴影：左侧卡片投向右（dx=2），右侧卡片投向左（dx=-2） -->
+                <filter id="shadowRight" x="-20%" y="-20%" width="150%" height="150%">
+                  <feDropShadow dx="2" dy="0" stdDeviation="2" flood-color="#000000" flood-opacity="0.12" />
+                </filter>
+                <filter id="shadowLeft" x="-20%" y="-20%" width="150%" height="150%">
+                  <feDropShadow dx="-2" dy="0" stdDeviation="2" flood-color="#000000" flood-opacity="0.12" />
+                </filter>
+              </defs>
+
+              <!-- 卡片（需关注=浅黄 / 正常=浅绿） -->
+              <rect class="box box--warn" filter="url(#shadowRight)" x="40"  y="20"  width="320" height="156" rx="36" />
+              <text class="box-text" x="200" y="98">视力与眼</text>
+              <rect class="box box--good" filter="url(#shadowRight)" x="40"  y="216" width="320" height="156" rx="36" />
+              <text class="box-text" x="200" y="294">心肺功能</text>
+              <rect class="box box--warn" filter="url(#shadowRight)" x="40"  y="412" width="320" height="156" rx="36" />
+              <text class="box-text" x="200" y="490">消化代谢</text>
+              <rect class="box box--good" filter="url(#shadowRight)" x="40"  y="608" width="320" height="156" rx="36" />
+              <text class="box-text" x="200" y="686">血液与营养</text>
+
+              <rect class="box box--warn" filter="url(#shadowLeft)" x="852" y="20"  width="320" height="156" rx="36" />
+              <text class="box-text" x="1012" y="98">口腔健康</text>
+              <rect class="box box--warn" filter="url(#shadowLeft)" x="852" y="216" width="320" height="156" rx="36" />
+              <text class="box-text" x="1012" y="294">生长发育</text>
+              <rect class="box box--good" filter="url(#shadowLeft)" x="852" y="412" width="320" height="156" rx="36" />
+              <text class="box-text" x="1012" y="490">骨骼脊柱</text>
+
+              <!-- 折线指引（终点实心圆，拐点无标记） -->
+              <polyline class="lead" points="360,100 600,100" />
+              <circle class="end-dot" cx="600" cy="100" r="6" />
+              <polyline class="lead" points="360,300 450,300 450,250 600,250" />
+              <circle class="end-dot" cx="600" cy="250" r="6" />
+              <polyline class="lead" points="360,480 450,480 450,380 600,380" />
+              <circle class="end-dot" cx="600" cy="380" r="6" />
+              <polyline class="lead" points="360,680 600,680" />
+              <circle class="end-dot" cx="600" cy="680" r="6" />
+
+              <polyline class="lead" points="852,100 750,100 750,180 650,180" />
+              <circle class="end-dot" cx="650" cy="180" r="6" />
+              <polyline class="lead" points="852,300 750,300 750,250 650,250" />
+              <circle class="end-dot" cx="650" cy="250" r="6" />
+              <polyline class="lead" points="852,480 750,480 750,400 650,400" />
+              <circle class="end-dot" cx="650" cy="400" r="6" />
+            </svg>
+
+            <!-- 热区：覆盖在 SVG 卡片位置上 -->
+            <button type="button" class="sysmap__zone" data-key="eye"    style="left:3.3%;  top:2.4%;  width:26.4%; height:18.5%" aria-label="视力与眼"></button>
+            <button type="button" class="sysmap__zone" data-key="heart"  style="left:3.3%;  top:25.7%; width:26.4%; height:18.5%" aria-label="心肺功能"></button>
+            <button type="button" class="sysmap__zone" data-key="digest" style="left:3.3%;  top:48.9%; width:26.4%; height:18.5%" aria-label="消化代谢"></button>
+            <button type="button" class="sysmap__zone" data-key="blood"  style="left:3.3%;  top:72.2%; width:26.4%; height:18.5%" aria-label="血液与营养"></button>
+            <button type="button" class="sysmap__zone" data-key="oral"   style="left:70.3%; top:2.4%;  width:26.4%; height:18.5%" aria-label="口腔健康"></button>
+            <button type="button" class="sysmap__zone" data-key="growth" style="left:70.3%; top:25.7%; width:26.4%; height:18.5%" aria-label="生长发育"></button>
+            <button type="button" class="sysmap__zone" data-key="bone"   style="left:70.3%; top:48.9%; width:26.4%; height:18.5%" aria-label="骨骼脊柱"></button>
+          </div>
+
+          <!-- 人像：叠在图片下方，保持重叠效果（待替换为儿童人像） -->
+          <div class="sysmap__body">
+            <img src="pic/child.png" alt="人体示意图" class="sysmap__body-img" />
+          </div>
+        </div>
+
+        <!-- 点击热区后展示的系统详情解读 -->
+        <div class="sysmap__detail" id="sysDetail" hidden>
+          <div class="sysmap__detail-head">
+            <strong id="sysDetailName">—</strong>
+            <span class="sysmap__detail-badge" id="sysDetailBadge">—</span>
+          </div>
+
+          <!-- 整体状态（可选） -->
+          <div class="sysmap__detail-block" id="overallBlock" hidden>
+            <span class="sysmap__overall-dot" id="overallDot"></span>
+            <span class="sysmap__overall-text">整体状态：</span>
+            <span class="sysmap__overall-value" id="sysDetailOverall">—</span>
+          </div>
+
+          <!-- 描述段落（指标前，可选） -->
+          <div class="sysmap__detail-block" id="descBlock" hidden>
+            <div class="sysmap__detail-note" id="sysDetailDesc"></div>
+          </div>
+
+          <div class="sysmap__detail-block">
+            <h4 class="sysmap__detail-title" id="metricsTitle">主要关注指标</h4>
+            <ul class="sysmap__metrics" id="sysDetailMetrics"></ul>
+          </div>
+
+          <!-- 指标后补充段落（可选） -->
+          <div class="sysmap__detail-block" id="extraDescBlock" hidden>
+            <div class="sysmap__detail-note" id="sysDetailExtra"></div>
+          </div>
+
+          <div class="sysmap__detail-block">
+            <h4 class="sysmap__detail-title" id="interpretTitle">解读</h4>
+            <div class="sysmap__detail-note" id="sysDetailNote"></div>
+          </div>
+
+          <!-- 系统级 CTA 按钮组（按需显示）：预约专项检查 + AI深度解析 -->
+          <div class="sysmap__detail-block" id="sysDetailCtaBlock" hidden>
+            <div class="sysmap__detail-cta-group">
+              <button type="button" class="sysmap__detail-cta" id="sysDetailCta">预约专项检查</button>
+              <button type="button" class="sysmap__detail-cta sysmap__detail-cta--secondary" id="sysDetailAiCta">AI深度解析</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ④ 健康趋势 -->
+      <section class="module">
+        <div class="module__head">
+          <h2 class="module__title"><span class="module__num">04</span>健康趋势</h2>
+        </div>
+
+        <!-- 回溯文案 + 指标切换 + 对比，同一张白卡 -->
+        <div class="trend">
+          <div class="trend__summary">
+            <p>8 岁儿童正处在快速生长期，判断体重不能只看数字，要和同龄男孩比（百分位）。乐乐身高位于<b>第 70 百分位（中上水平）</b>，而 BMI 已到<b>第 95 百分位（接近肥胖）</b>——体重跑得比个子快。近一年家长也反馈饭量变大、体重长得快。照这个速度，一年后很可能进入肥胖范围；现在开始控制，体重百分位也会随之回落。</p>
+          </div>
+
+          <div class="trend__tabs">
+            <button class="trend__tab is-active" data-trend="height" type="button">
+              <span class="trend__tab-name">身高</span>
+            </button>
+            <button class="trend__tab" data-trend="bmi" type="button">
+              <span class="trend__tab-name">BMI</span>
+            </button>
+            <button class="trend__tab" data-trend="tg" type="button">
+              <span class="trend__tab-name">甘油三酯</span>
+            </button>
+            <button class="trend__tab" data-trend="glu" type="button">
+              <span class="trend__tab-name">血糖</span>
+            </button>
+          </div>
+
+          <div class="trend__panel is-active" data-panel="height">
+            <div class="trend__head">
+              <div class="trend__legend">
+                <span class="trend__key"><i class="trend__dot trend__dot--good"></i>身高</span>
+              </div>
+              <span class="trend__delta">本次 132 cm</span>
+            </div>
+            <div class="trend__compare">
+              <div class="trend__cmp"><span class="trend__cmp-label">本次</span><span class="trend__cmp-val">132 <em>cm</em></span><span class="trend__cmp-flag is-good">P70 中上</span></div>
+              <div class="trend__cmp"><span class="trend__cmp-label">同龄参考</span><span class="trend__cmp-val">生长正常 <em>6.5 cm/年</em></span><span class="trend__cmp-flag is-good">—</span></div>
+            </div>
+          </div>
+
+          <div class="trend__panel" data-panel="bmi">
+            <div class="trend__head">
+              <div class="trend__legend">
+                <span class="trend__key"><i class="trend__dot trend__dot--warn"></i>BMI</span>
+              </div>
+              <span class="trend__delta">本次 20.1</span>
+            </div>
+            <div class="trend__compare">
+              <div class="trend__cmp"><span class="trend__cmp-label">本次</span><span class="trend__cmp-val">20.1 <em>kg/m²</em></span><span class="trend__cmp-flag is-warn">P95 接近肥胖</span></div>
+              <div class="trend__cmp"><span class="trend__cmp-label">建议</span><span class="trend__cmp-val">控制增长 <em>回归正常范围</em></span><span class="trend__cmp-flag is-good">—</span></div>
+            </div>
+          </div>
+
+          <div class="trend__panel" data-panel="tg">
+            <div class="trend__head">
+              <div class="trend__legend">
+                <span class="trend__key"><i class="trend__dot trend__dot--warn"></i>甘油三酯</span>
+                <span class="trend__key"><i class="trend__dot trend__dot--target"></i>健康目标</span>
+              </div>
+              <span class="trend__delta">本次 1.42</span>
+            </div>
+            <div class="trend__compare">
+              <div class="trend__cmp"><span class="trend__cmp-label">本次</span><span class="trend__cmp-val">1.42 <em>mmol/L</em></span><span class="trend__cmp-flag is-warn">接近偏高</span></div>
+              <div class="trend__cmp"><span class="trend__cmp-label">健康目标</span><span class="trend__cmp-val">&lt; 1.70 <em>mmol/L</em></span><span class="trend__cmp-flag is-good">—</span></div>
+            </div>
+          </div>
+
+          <div class="trend__panel" data-panel="glu">
+            <div class="trend__head">
+              <div class="trend__legend">
+                <span class="trend__key"><i class="trend__dot trend__dot--good"></i>空腹血糖</span>
+              </div>
+              <span class="trend__delta">本次 4.9</span>
+            </div>
+            <div class="trend__compare">
+              <div class="trend__cmp"><span class="trend__cmp-label">本次</span><span class="trend__cmp-val">4.9 <em>mmol/L</em></span><span class="trend__cmp-flag is-good">正常</span></div>
+              <div class="trend__cmp"><span class="trend__cmp-label">健康目标</span><span class="trend__cmp-val">3.9–6.1 <em>mmol/L</em></span><span class="trend__cmp-flag is-good">—</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ⑤ 生活方式管理 -->
+      <section class="module">
+        <div class="module__head">
+          <h2 class="module__title"><span class="module__num">05</span>生活方式管理</h2>
+        </div>
+
+        <article class="lifestyle plan-offer-card">
+          <ul class="lifestyle__list plan-offer-points">
+            <li><b>饮食</b>：含糖饮料、奶茶从每周 3–4 次减到每周最多 1 次；炸鸡、薯条等快餐每周最多 1 次；每天水果 1–2 份。</li>
+            <li><b>运动</b>：放学先到户外活动，每天至少 1 小时；娱乐性屏幕控制在每天 1 小时内，用眼 30–40 分钟远眺休息。</li>
+            <li><b>口腔</b>：早晚各刷 1 次牙、每次 2 分钟，用含氟牙膏；尽快去口腔科补牙并做窝沟封闭。</li>
+          </ul>
+          <div class="plan-offer">
+            <p class="plan-offer__text">如果您需要，我们可以为您和孩子免费定制一份个人健康改善计划书，含 30 天饮食、运动与行为改变方案，帮助孩子控制体重、改善视力与口腔健康。</p>
+            <button type="button" class="lifestyle__cta plan-offer__btn" id="planOfferBtn">制定个人健康改善计划</button>
+          </div>
+        </article>
+      </section>
+
+      <!-- ⑥ 随访计划 -->
+      <section class="module">
+        <div class="module__head">
+          <h2 class="module__title"><span class="module__num">06</span>随访计划</h2>
+        </div>
+
+        <div class="lifestyle__followup" id="followupWrap"></div>
+      </section>
+
+      <img class="brandmark-foot" src="pic/卓正医疗标准Logo透明底.png" alt="卓正医疗" />
+      <p class="disclaimer">本报告解读仅供参考，不能替代专业医师的诊断与治疗建议。如有不适请及时就医。</p>
+    </main>
+  </div>
+
+  <script src="report-common.js"></script>
+  <script src="script-child.js"></script>
+  <script src="topbar-menu.js"></script>
+</body>
+</html>

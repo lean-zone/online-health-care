@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>体检报告解读 · Physical Examination</title>
+  <meta name="description" content="专业、清晰、易懂的体检报告智能解读，帮您读懂每一项指标背后的健康含义。" />
+  <!-- 品牌专用字体由 styles.css 的 @font-face 本地加载，无需外部字体服务 -->
+  <link rel="stylesheet" href="styles.css?v=20260912" />
+</head>
+<body>
+  <div class="phone">
+    <!-- 顶部导航 -->
+    <header class="topbar">
+      <button class="topbar__back" aria-label="返回">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M15 6L9 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="topbar__title">体检报告解读</div>
+      <button class="topbar__more" aria-label="更多">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- 报告切换菜单 -->
+      <nav class="topbar__menu" id="reportMenu" hidden>
+        <a class="topbar__menu-item" href="male.html">张先生 · 38 岁</a>
+        <a class="topbar__menu-item" href="female.html">李女士 · 36 岁</a>
+        <a class="topbar__menu-item" href="child.html">乐乐 · 8 岁</a>
+        <a class="topbar__menu-item" href="elder.html">王阿姨 · 68 岁</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <!-- ① 健康总览 -->
+      <section class="module module--overview">
+        <div class="module__head">
+          <h2 class="module__title"><span class="module__num">01</span>健康总览</h2>
+        </div>
+
+        <div class="overview">
+          <div class="overview__head">
+            <span class="overview__eyebrow">2026 年度健康评估</span>
+            <h1 class="overview__name">王阿姨 · 68 岁</h1>
+            <p class="overview__meta">综合体检 · 报告日期 2026-08-18</p>
+            <div class="overview__tags">
+              <span class="tag tag--good">整体尚可</span>
+              <span class="tag tag--warn">4 项需关注</span>
+            </div>
+          </div>
+
+          <div class="overview__ai">
+            <p class="overview__ai-text">这次体检总体情况不错，没有发现需要马上处理的大毛病，血糖、肝功能、血常规都正常。需要留意的是<b>血管里长了斑块、骨头开始变"松"、肾脏功能比以前弱了一些、肺上有个小结节</b>。到了这个年纪，身体不需要追求每个指标都"完美"，关键是把它当回事、慢慢保养。颈动脉斑块、肺部结节与肾功能变化，<b>建议按下方指引尽快到相应专科就诊评估</b>。同时，如果您需要，我们可以为您免费定制一份<b>个人健康改善计划书</b>，帮助管理心血管风险、保护骨骼与肾功能。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ② 重点问题 -->
+      <section class="module">
+        <div class="module__head">
+          <h2 class="module__title"><span class="module__num">02</span>重点问题</h2>
+        </div>
+
+        <article class="issue">
+          <header class="issue__head">
+            <h3 class="issue__summary">血管里长了斑块</h3>
+            <a class="issue__link" href="#" data-key="heart">查看详情</a>
+          </header>
+
+          <div class="issue__block">
+            <p>您有高血压 8 年、高血脂 5 年，这次颈动脉检查发现<b>血管壁上长了一块"斑块"（约 8×2.1 毫米）</b>，就像水管内壁结了一层水垢。目前水管还没堵，也没出现过心脑血管问题。现在要做的是管住血压、血脂和体重，别再让它长大；再带上检查结果问问医生，看现在的用药量够不够。</p>
+          </div>
+        </article>
+
+        <article class="issue">
+          <header class="issue__head">
+            <h3 class="issue__summary">骨头开始变"松"</h3>
+            <a class="issue__link" href="#" data-key="bone">查看详情</a>
+          </header>
+
+          <div class="issue__block">
+            <p>骨密度检查提示<b>骨量减少</b>，骨头比年轻时"脆"了一些，还没到骨质疏松的程度。加上年纪大了、腿劲不如从前，摔倒的风险在增加。现在开始做对的事完全来得及：每天走动、做点力量锻炼、注意补钙和维生素 D，再做好防摔倒措施——这比"躺着静养"更护骨头。</p>
+          </div>
+        </article>
+
+        <article class="issue">
+          <header class="issue__head">
+            <h3 class="issue__summary">肾脏功能比从前弱了一点</h3>
+            <a class="issue__link" href="#" data-key="kidney">查看详情</a>
+          </header>
+
+          <div class="issue__block">
+            <p>肾脏是身体的"过滤器"，这次检查显示<b>它的过滤功能比正常水平略低了一点</b>。单看一次结果还不能说得了肾病——年纪大了、血压高、喝水少都可能影响它。重点是过一阵再复查一次、看趋势，同时别乱吃伤肾的药，尤其止痛药。</p>
+          </div>
+        </article>
+
+        <article class="issue">
+          <header class="issue__head">
+            <h3 class="issue__summary">肺上发现一个小结节</h3>
+            <a class="issue__link" href="#" data-key="lung">查看详情</a>
+          </header>
+
+          <div class="issue__block">
+            <p>肺里发现一个约 5 毫米的小点，边界清楚、没有明显坏迹象，<b>绝大多数这样的结节是良性的，不等于肺癌</b>。单靠这一次拍片判断不了它是什么，也不需要紧张。建议带着片子去呼吸科让医生看一眼，按要求过段时间再拍一次，看它有没有变化。</p>
+          </div>
+        </article>
+      </section>
+
+      <!-- ③ 各系统健康状态（老年定制系统） -->
+      <section class="module">
+        <div class="module__head">
+          <h2 class="module__title"><span class="module__num">03</span>各系统健康状态</h2>
+        </div>
+
+        <!-- 整图（SVG 绘制）+ 透明热区 -->
+        <div class="sysmap">
+          <!-- 上方 5px 留白 + 整体右移 5px -->
+          <div class="sysmap__canvas">
+            <svg class="sysmap__svg" viewBox="0 0 1212 842" xmlns="http://www.w3.org/2000/svg" aria-label="人体各系统健康状态示意图">
+              <defs>
+                <style>
+                  .box { fill: #FFFFFF; }
+                  .box--warn { fill: #FDF1E3; }        /* 需关注：浅橙（卓正橙点缀） */
+                  .box--good { fill: #D9EEF2; }         /* 正常：卓正浅蓝 */
+                  .box--none { fill: #F0F1F3; }         /* 无数据：浅灰 */
+                  .box-text {
+                    font-family: var(--zz-font-title);
+                    font-size: 38px; font-weight: 400; fill: #3C4448;
+                    text-anchor: middle; dominant-baseline: middle;
+                  }
+                  .lead { fill: none; stroke: #A7B2B8; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 8 6; }
+                  .end-dot { fill: #A7B2B8; }
+                </style>
+                <!-- 阴影：左侧卡片投向右（dx=2），右侧卡片投向左（dx=-2） -->
+                <filter id="shadowRight" x="-20%" y="-20%" width="150%" height="150%">
+                  <feDropShadow dx="2" dy="0" stdDeviation="2" flood-color="#000000" flood-opacity="0.12" />
+                </filter>
+                <filter id="shadowLeft" x="-20%" y="-20%" width="150%" height="150%">
+                  <feDropShadow dx="-2" dy="0" stdDeviation="2" flood-color="#000000" flood-opacity="0.12" />
+                </filter>
+              </defs>
+
+              <!-- 卡片（需关注=浅橙 / 正常=浅绿） -->
+              <rect class="box box--good" filter="url(#shadowRight)" x="40"  y="20"  width="320" height="156" rx="36" />
+              <text class="box-text" x="200" y="98">血液与营养</text>
+              <rect class="box box--warn" filter="url(#shadowRight)" x="40"  y="216" width="320" height="156" rx="36" />
+              <text class="box-text" x="200" y="294">心血管系统</text>
+              <rect class="box box--good" filter="url(#shadowRight)" x="40"  y="412" width="320" height="156" rx="36" />
+              <text class="box-text" x="200" y="490">消化系统</text>
+              <rect class="box box--warn" filter="url(#shadowRight)" x="40"  y="608" width="320" height="156" rx="36" />
+              <text class="box-text" x="200" y="686">骨骼肌肉</text>
+
+              <rect class="box box--warn" filter="url(#shadowLeft)" x="852" y="20"  width="320" height="156" rx="36" />
+              <text class="box-text" x="1012" y="98">内分泌代谢</text>
+              <rect class="box box--warn" filter="url(#shadowLeft)" x="852" y="216" width="320" height="156" rx="36" />
+              <text class="box-text" x="1012" y="294">呼吸系统</text>
+              <rect class="box box--warn" filter="url(#shadowLeft)" x="852" y="412" width="320" height="156" rx="36" />
+              <text class="box-text" x="1012" y="490">肾与泌尿</text>
+
+              <!-- 折线指引（终点实心圆，拐点无标记） -->
+              <polyline class="lead" points="360,100 600,100" />
+              <circle class="end-dot" cx="600" cy="100" r="6" />
+              <polyline class="lead" points="360,300 450,300 450,250 600,250" />
+              <circle class="end-dot" cx="600" cy="250" r="6" />
+              <polyline class="lead" points="360,480 450,480 450,380 600,380" />
+              <circle class="end-dot" cx="600" cy="380" r="6" />
+              <polyline class="lead" points="360,680 600,680" />
+              <circle class="end-dot" cx="600" cy="680" r="6" />
+
+              <polyline class="lead" points="852,100 750,100 750,180 650,180" />
+              <circle class="end-dot" cx="650" cy="180" r="6" />
+              <polyline class="lead" points="852,300 750,300 750,250 650,250" />
+              <circle class="end-dot" cx="650" cy="250" r="6" />
+              <polyline class="lead" points="852,480 750,480 750,400 650,400" />
+              <circle class="end-dot" cx="650" cy="400" r="6" />
+            </svg>
+
+            <!-- 热区：覆盖在 SVG 卡片位置上 -->
+            <button type="button" class="sysmap__zone" data-key="blood"  style="left:3.3%;  top:2.4%;  width:26.4%; height:18.5%" aria-label="血液与营养"></button>
+            <button type="button" class="sysmap__zone" data-key="heart"  style="left:3.3%;  top:25.7%; width:26.4%; height:18.5%" aria-label="心血管系统"></button>
+            <button type="button" class="sysmap__zone" data-key="liver"  style="left:3.3%;  top:48.9%; width:26.4%; height:18.5%" aria-label="消化系统"></button>
+            <button type="button" class="sysmap__zone" data-key="bone"   style="left:3.3%;  top:72.2%; width:26.4%; height:18.5%" aria-label="骨骼肌肉"></button>
+            <button type="button" class="sysmap__zone" data-key="endo"   style="left:70.3%; top:2.4%;  width:26.4%; height:18.5%" aria-label="内分泌代谢"></button>
+            <button type="button" class="sysmap__zone" data-key="lung"   style="left:70.3%; top:25.7%; width:26.4%; height:18.5%" aria-label="呼吸系统"></button>
+            <button type="button" class="sysmap__zone" data-key="kidney" style="left:70.3%; top:48.9%; width:26.4%; height:18.5%" aria-label="肾与泌尿"></button>
+          </div>
+
+          <!-- 人像：叠在图片下方，保持重叠效果（待替换为老年女性人像素材） -->
+          <div class="sysmap__body">
+            <img src="pic/elder-female.png" alt="人体示意图" class="sysmap__body-img" />
+          </div>
+        </div>
+
+        <!-- 点击热区后展示的系统详情解读 -->
+        <div class="sysmap__detail" id="sysDetail" hidden>
+          <div class="sysmap__detail-head">
+            <strong id="sysDetailName">—</strong>
+            <span class="sysmap__detail-badge" id="sysDetailBadge">—</span>
+          </div>
+
+          <!-- 整体状态（可选） -->
+          <div class="sysmap__detail-block" id="overallBlock" hidden>
+            <span class="sysmap__overall-dot" id="overallDot"></span>
+            <span class="sysmap__overall-text">整体状态：</span>
+            <span class="sysmap__overall-value" id="sysDetailOverall">—</span>
+          </div>
+
+          <!-- 描述段落（指标前，可选） -->
+          <div class="sysmap__detail-block" id="descBlock" hidden>
+            <div class="sysmap__detail-note" id="sysDetailDesc"></div>
+          </div>
+
+          <div class="sysmap__detail-block">
+            <h4 class="sysmap__detail-title" id="metricsTitle">主要关注指标</h4>
+            <ul class="sysmap__metrics" id="sysDetailMetrics"></ul>
+          </div>
+
+          <!-- 指标后补充段落（可选） -->
+          <div class="sysmap__detail-block" id="extraDescBlock" hidden>
+            <div class="sysmap__detail-note" id="sysDetailExtra"></div>
+          </div>
+
+          <div class="sysmap__detail-block">
+            <h4 class="sysmap__detail-title" id="interpretTitle">解读</h4>
+            <div class="sysmap__detail-note" id="sysDetailNote"></div>
+          </div>
+
+          <!-- 系统级 CTA 按钮组（按需显示）：预约专项检查 + AI深度解析 -->
+          <div class="sysmap__detail-block" id="sysDetailCtaBlock" hidden>
+            <div class="sysmap__detail-cta-group">
+              <button type="button" class="sysmap__detail-cta" id="sysDetailCta">预约专项检查</button>
+              <button type="button" class="sysmap__detail-cta sysmap__detail-cta--secondary" id="sysDetailAiCta">AI深度解析</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ④ 健康趋势 -->
+      <section class="module">
+        <div class="module__head">
+          <h2 class="module__title"><span class="module__num">04</span>健康趋势</h2>
+        </div>
+
+        <!-- 回溯文案 + 指标切换 + 对比，同一张白卡 -->
+        <div class="trend">
+          <div class="trend__summary">
+            <p>您的高血压、高血脂已经管理多年，这次血压 136/78，说明<b>平时用药管得不错、血压挺稳</b>，血糖、血脂也都在可控范围。以后值得盯住三件事：血压血脂和体重、肾功能、骨密度。以这次体检为起点，按计划复查就行。</p>
+          </div>
+
+          <div class="trend__tabs">
+            <button class="trend__tab is-active" data-trend="bp" type="button">
+              <span class="trend__tab-name">血压</span>
+            </button>
+            <button class="trend__tab" data-trend="tc" type="button">
+              <span class="trend__tab-name">血脂</span>
+            </button>
+            <button class="trend__tab" data-trend="kidney" type="button">
+              <span class="trend__tab-name">肾功能</span>
+            </button>
+            <button class="trend__tab" data-trend="bone" type="button">
+              <span class="trend__tab-name">骨密度</span>
+            </button>
+          </div>
+
+          <div class="trend__panel is-active" data-panel="bp">
+            <div class="trend__head">
+              <div class="trend__legend">
+                <span class="trend__key"><i class="trend__dot trend__dot--good"></i>血压</span>
+              </div>
+              <span class="trend__delta">本次 136/78</span>
+            </div>
+            <div class="trend__compare">
+              <div class="trend__cmp"><span class="trend__cmp-label">本次</span><span class="trend__cmp-val">136/78 <em>mmHg</em></span><span class="trend__cmp-flag is-good">控制尚可</span></div>
+              <div class="trend__cmp"><span class="trend__cmp-label">健康目标</span><span class="trend__cmp-val">&lt; 140/90 <em>mmHg</em></span><span class="trend__cmp-flag is-good">—</span></div>
+            </div>
+          </div>
+
+          <div class="trend__panel" data-panel="tc">
+            <div class="trend__head">
+              <div class="trend__legend">
+                <span class="trend__key"><i class="trend__dot trend__dot--good"></i>总胆固醇</span>
+                <span class="trend__key"><i class="trend__dot trend__dot--target"></i>健康目标</span>
+              </div>
+              <span class="trend__delta">本次 5.18</span>
+            </div>
+            <div class="trend__compare">
+              <div class="trend__cmp"><span class="trend__cmp-label">本次</span><span class="trend__cmp-val">5.18 <em>mmol/L</em></span><span class="trend__cmp-flag is-good">正常</span></div>
+              <div class="trend__cmp"><span class="trend__cmp-label">健康目标</span><span class="trend__cmp-val">&lt; 5.20 <em>mmol/L</em></span><span class="trend__cmp-flag is-good">—</span></div>
+            </div>
+          </div>
+
+          <div class="trend__panel" data-panel="kidney">
+            <div class="trend__head">
+              <div class="trend__legend">
+                <span class="trend__key"><i class="trend__dot trend__dot--warn"></i>过滤功能（eGFR）</span>
+              </div>
+              <span class="trend__delta">本次 57</span>
+            </div>
+            <div class="trend__compare">
+              <div class="trend__cmp"><span class="trend__cmp-label">本次</span><span class="trend__cmp-val">57 <em>mL/min/1.73m²</em></span><span class="trend__cmp-flag is-warn">轻度下降</span></div>
+              <div class="trend__cmp"><span class="trend__cmp-label">健康目标</span><span class="trend__cmp-val">&gt; 90 <em>mL/min/1.73m²</em></span><span class="trend__cmp-flag is-good">—</span></div>
+            </div>
+          </div>
+
+          <div class="trend__panel" data-panel="bone">
+            <div class="trend__head">
+              <div class="trend__legend">
+                <span class="trend__key"><i class="trend__dot trend__dot--warn"></i>骨密度（T 值）</span>
+              </div>
+              <span class="trend__delta">腰椎 -1.9 / 股骨颈 -2.1</span>
+            </div>
+            <div class="trend__compare">
+              <div class="trend__cmp"><span class="trend__cmp-label">本次</span><span class="trend__cmp-val">-1.9 / -2.1 <em>T 值</em></span><span class="trend__cmp-flag is-warn">骨量减少</span></div>
+              <div class="trend__cmp"><span class="trend__cmp-label">健康目标</span><span class="trend__cmp-val">≥ -1.0 <em>T 值</em></span><span class="trend__cmp-flag is-good">—</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ⑤ 生活方式管理 -->
+      <section class="module">
+        <div class="module__head">
+          <h2 class="module__title"><span class="module__num">05</span>生活方式管理</h2>
+        </div>
+
+        <article class="lifestyle plan-offer-card">
+          <ul class="lifestyle__list plan-offer-points">
+            <li><b>运动</b>：每天散步 20–30 分钟，慢慢加一点力量锻炼（快走、上下楼梯、坐站练习）；以动作稳定、安全为第一。</li>
+            <li><b>饮食</b>：三餐正常吃，少吃咸菜腌菜、肥肉、油炸食品，多吃蔬菜杂粮、鱼、豆制品；少喝甜饮料。</li>
+            <li><b>肾脏</b>：降压药、降脂药按医嘱继续吃，别自己停药；不要长期吃布洛芬等止痛药，加新药前先问医生。</li>
+          </ul>
+          <div class="plan-offer">
+            <p class="plan-offer__text">如果您需要，我们可以为您免费定制一份个人健康改善计划书，含 30 天饮食、运动与行为改变方案，帮助管理心血管风险、保护骨骼与肾功能。</p>
+            <button type="button" class="lifestyle__cta plan-offer__btn" id="planOfferBtn">制定个人健康改善计划</button>
+          </div>
+        </article>
+      </section>
+
+      <!-- ⑥ 随访计划 -->
+      <section class="module">
+        <div class="module__head">
+          <h2 class="module__title"><span class="module__num">06</span>随访计划</h2>
+        </div>
+
+        <div class="lifestyle__followup" id="followupWrap"></div>
+      </section>
+
+      <img class="brandmark-foot" src="pic/卓正医疗标准Logo透明底.png" alt="卓正医疗" />
+      <p class="disclaimer">本报告解读仅供参考，不能替代专业医师的诊断与治疗建议。如有不适请及时就医。</p>
+    </main>
+  </div>
+
+  <script src="report-common.js"></script>
+  <script src="script-elder.js"></script>
+  <script src="topbar-menu.js"></script>
+</body>
+</html>

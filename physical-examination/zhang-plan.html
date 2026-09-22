@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<title>个人健康改善计划书 · 张先生</title>
+<style>
+  /* ===== 品牌专用字体（VI p30-38）：中文标题 方正粗圆 / 中文正文 方正准圆；西文与数字 Myriad Pro ===== */
+  @font-face {
+    font-family: "ZZ-CuYuan";
+    src: url("branding-pic/fonts/方正粗圆_GBK.woff2") format("woff2"),
+         url("branding-pic/fonts/方正粗圆_GBK.woff") format("woff");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "ZZ-ZhunYuan";
+    src: url("branding-pic/fonts/方正准圆_GBK.woff2") format("woff2"),
+         url("branding-pic/fonts/方正准圆_GBK.ttf") format("truetype");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "ZZ-Myriad";
+    src: url("branding-pic/fonts/MyriadPro-Regular.otf") format("opentype");
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "ZZ-Myriad";
+    src: url("branding-pic/fonts/MyriadPro-Bold.otf") format("opentype");
+    font-weight: 700;
+    font-display: swap;
+  }
+  /* 标题内西文：Myriad Pro Bold 映射到 400 字重，与方正粗圆的视觉字重匹配，且不触发合成加粗 */
+  @font-face {
+    font-family: "ZZ-Myriad-Title";
+    src: url("branding-pic/fonts/MyriadPro-Bold.otf") format("opentype");
+    font-weight: 400;
+    font-display: swap;
+  }
+
+  /* ===== 主题 · 卓正医疗品牌视觉规范 VI 2025.01 ===== */
+  :root {
+    --radius: .625rem;
+
+    /* 卓正蓝三阶（核心色） */
+    --zz-blue-1: #006F8A;   /* 标志标准色 */
+    --zz-blue-2: #00809E;   /* 背景色 */
+    --zz-blue-3: #009BBF;   /* 背景色 */
+    /* 主要辅助色 */
+    --zz-cyan: #00BED6;     /* 蓝绿色 · 大面积背景 */
+    --zz-blue-light: #67C6DF; /* 蓝色 · 大面积背景 */
+    --zz-blue-pale: #D9EEF2;  /* 浅蓝色 · 提亮/文本 */
+    --zz-bg: #F6F6F6;       /* 浅灰色 · 背景 */
+    --zz-white: #FFFFFF;
+    --zz-text: #595757;     /* 深灰色 · 文本 */
+    --zz-accent-yellow: #FFEE6F; /* 极小比例点缀 */
+    --zz-accent-orange: #F18E1D; /* 极小比例点缀 */
+    --zz-accent-orange-deep: #9A5A0B; /* 橙色文字（保证对比度） */
+
+    /* 品牌专用字体：中文标题 方正粗圆 / 中文正文 方正准圆；西文与数字 Myriad Pro */
+    --zz-font-title: "ZZ-Myriad-Title", "ZZ-CuYuan", "ZZ-ZhunYuan", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --zz-font-body: "ZZ-Myriad", "ZZ-ZhunYuan", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --zz-font-en: "ZZ-Myriad", "Helvetica Neue", Arial, sans-serif;
+    --zz-font-sans: var(--zz-font-body); /* 兼容：正文默认字体 */
+
+    /* 语义变量映射到品牌色（以卓正蓝为主，辅助色小比例） */
+    --background: var(--zz-bg);
+    --foreground: var(--zz-text);
+    --card: var(--zz-white);
+    --card-foreground: var(--zz-text);
+    --primary: var(--zz-blue-1);
+    --primary-foreground: var(--zz-white);
+    --secondary: #E8F3F6;
+    --secondary-foreground: #00566B;
+    --muted: #EDF6F8;
+    --muted-foreground: #63696D;
+    --accent: var(--zz-blue-pale);
+    --accent-foreground: #00556A;
+    --border: #E3E9EB;
+    --ring: var(--zz-blue-1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; line-height: 1.5; }
+  body {
+    background: var(--background); color: var(--foreground);
+    font-family: var(--zz-font-sans);
+    -webkit-tap-highlight-color: transparent;
+  }
+  h1,h2,h3,h4,h5,h6 { font-size: inherit; font-weight: inherit; }
+  a { color: inherit; text-decoration: none; }
+  strong { font-weight: 600; }
+  /* 中文标题 / 强调：方正粗圆 */
+  .serif, .hero-title, .section-title, .goal-title, .module-title, .phase-title, .meta-value { font-family: var(--zz-font-title); }
+
+  /* 顶部导航 */
+  .site-header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--border); background: rgba(246,246,246,.88); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+  /* 品牌色顶部点缀条（卓正蓝三阶渐变） */
+  .site-header::after { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: linear-gradient(90deg, var(--zz-blue-1) 0%, var(--zz-blue-3) 55%, var(--zz-cyan) 100%); }
+  .header-inner { max-width: 48rem; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; }
+  .brand { display: flex; align-items: center; gap: .625rem; }
+  .brand-logo { height: 1.75rem; width: auto; object-fit: contain; }
+  .section-nav { display: flex; align-items: center; gap: 1.25rem; font-size: .75rem; letter-spacing: .1em; color: var(--muted-foreground); }
+  .section-nav a:hover { color: var(--primary); }
+
+  /* Hero */
+  .hero { max-width: 48rem; margin: 0 auto; padding: 3.5rem 1.5rem 2.5rem; background: linear-gradient(180deg, #EAF4F8 0%, rgba(234,244,248,0) 100%); }
+  .hero-eyebrow { font-size: .75rem; font-weight: 500; letter-spacing: .4em; color: var(--primary); }
+  .hero-title { margin-top: 1.25rem; font-size: 2.25rem; font-weight: 700; line-height: 1.25; letter-spacing: .05em; }
+  .hero-desc { margin-top: 1.25rem; max-width: 36rem; line-height: 2; color: var(--muted-foreground); }
+  .hero-meta { margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; }
+  .meta-card { display: flex; align-items: flex-start; gap: 1rem; border: 1px solid var(--border); border-radius: 1rem; background: var(--card); padding: 1.25rem; }
+  .meta-icon { margin-top: .125rem; color: var(--primary); flex-shrink: 0; }
+  .meta-label { font-size: .75rem; letter-spacing: .1em; color: var(--muted-foreground); }
+  .meta-value { margin-top: .25rem; font-size: 1.125rem; font-weight: 600; line-height: 1.4; }
+
+  /* 目录 */
+  .toc { margin-top: 2rem; border: 1px solid var(--border); border-radius: 1rem; background: var(--card); padding: 1.5rem; }
+  .toc-label { margin-bottom: 1rem; font-size: .75rem; font-weight: 500; letter-spacing: .3em; color: var(--muted-foreground); }
+  .toc-list { list-style: none; }
+  .toc-list li { border-bottom: 1px solid var(--border); }
+  .toc-list li:last-child { border-bottom: none; }
+  .toc-link { display: flex; align-items: center; justify-content: space-between; padding: .75rem 0; }
+  .toc-link:hover { color: var(--primary); }
+  .toc-link-inner { display: flex; align-items: baseline; gap: 1rem; }
+  .toc-num { font-size: .875rem; font-weight: 600; color: var(--primary); }
+  .toc-title { font-weight: 500; }
+  .toc-arrow { color: var(--muted-foreground); flex-shrink: 0; }
+
+  /* 章节 */
+  .section { max-width: 48rem; margin: 0 auto; padding: 2.5rem 1.5rem; scroll-margin-top: 5rem; }
+  .section--tinted { background: color-mix(in oklab, var(--card) 60%, transparent); }
+  .section-eyebrow { display: flex; align-items: center; gap: .75rem; font-size: .875rem; font-weight: 600; letter-spacing: .3em; color: var(--primary); }
+  .section-eyebrow::before { content: ''; width: 2.5rem; height: 1px; background: color-mix(in srgb, var(--primary) 60%, transparent); }
+  .section-title { margin-top: 1rem; font-size: 1.75rem; font-weight: 700; line-height: 1.3; letter-spacing: .04em; }
+  .sub-title { display: flex; align-items: center; gap: .75rem; margin: 2.5rem 0 1.25rem; font-family: var(--zz-font-sans); font-size: 1.25rem; font-weight: 600; }
+  .sub-title::before { content: ''; width: .25rem; height: 1.25rem; border-radius: 9999px; background: var(--primary); flex-shrink: 0; }
+  .section-caption { margin: 1.5rem 0 .75rem; font-size: .75rem; font-weight: 500; letter-spacing: .3em; color: var(--muted-foreground); }
+  .h4 { margin: 1.25rem 0 .625rem; font-family: var(--zz-font-sans); font-size: 1.0625rem; font-weight: 600; }
+
+  /* 正文 */
+  .prose p { line-height: 2; color: var(--foreground); }
+  .prose p + p { margin-top: 1.5rem; } /* 段间距需大于行距（VI 排版规则） */
+  .prose ul { margin-top: 1.5rem; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+  .prose ul > li { position: relative; padding-left: 1.25rem; line-height: 1.875; color: var(--foreground); }
+  .prose ul > li::before { content: ''; position: absolute; left: .125rem; top: .8em; width: .4rem; height: .4rem; border-radius: 9999px; background: var(--primary); }
+  .quote-card { margin-top: 1.5rem; border-radius: 1rem; background: var(--accent); padding: 1.25rem 1.5rem; }
+  .quote-card p { font-size: 1.0625rem; font-weight: 600; line-height: 2; color: var(--accent-foreground); }
+  .chips { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: .625rem; }
+  .chip { border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent); background: var(--card); border-radius: 9999px; padding: .5rem 1.25rem; font-size: .9375rem; font-weight: 600; color: var(--primary); }
+
+  /* 02 目标卡 */
+  .goals { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .goal-card { overflow: hidden; border: 1px solid var(--border); border-radius: 1.25rem; background: var(--card); box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+  .goal-head { display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid var(--border); background: color-mix(in oklab, var(--secondary) 50%, transparent); padding: 1.125rem 1.5rem; }
+  .goal-icon { color: var(--primary); flex-shrink: 0; }
+  .goal-tag { font-size: .75rem; font-weight: 500; letter-spacing: .3em; color: var(--primary); }
+  .goal-title { margin-top: .25rem; font-size: 1.125rem; font-weight: 700; line-height: 1.4; }
+  .goal-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+  .goal-quant { border-radius: .75rem; background: color-mix(in oklab, var(--accent) 70%, transparent); padding: 1rem 1.25rem; }
+  .goal-quant-label { font-size: .75rem; font-weight: 500; letter-spacing: .15em; color: var(--accent-foreground); }
+  .goal-quant-value { margin-top: .375rem; font-weight: 500; line-height: 1.625; color: var(--accent-foreground); }
+  .goal-row { display: grid; grid-template-columns: 110px 1fr; gap: .375rem; }
+  .goal-row-label { font-size: .875rem; font-weight: 500; color: var(--primary); }
+  .goal-row-value { line-height: 2; color: var(--foreground); }
+
+  /* 03 行动模块 */
+  .module-head { display: flex; align-items: center; gap: 1rem; margin-top: 2.5rem; }
+  .module-letter { width: 2.5rem; height: 2.5rem; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: .875rem; background: var(--primary); font-size: .9375rem; font-weight: 700; color: var(--primary-foreground); }
+  .module-title { display: flex; align-items: center; gap: .75rem; font-size: 1.375rem; font-weight: 700; line-height: 1.3; }
+  .action-list { margin-top: 1rem; display: flex; flex-direction: column; gap: 1.25rem; }
+  .action-card { border: 1px solid var(--border); border-radius: 1rem; background: var(--card); padding: 1.25rem 1.5rem; box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+  .action-title { font-size: 1.0625rem; font-weight: 600; line-height: 1.5; }
+  .action-text { margin-top: .625rem; line-height: 2; color: var(--foreground); }
+  .planb { margin-top: .75rem; border-radius: .75rem; background: color-mix(in oklab, var(--secondary) 60%, transparent); padding: .625rem .875rem; font-size: .875rem; line-height: 1.625; color: var(--secondary-foreground); }
+  .planb strong { color: var(--primary); }
+
+  /* 04 随访 */
+  .followup-block { margin-top: 1.5rem; }
+  .followup-title { display: flex; align-items: center; gap: .625rem; font-size: 1.0625rem; font-weight: 700; margin-bottom: .5rem; }
+  .followup-tag { height: 1.5rem; min-width: 3.25rem; padding: 0 .5rem; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; border-radius: .375rem; background: color-mix(in srgb, var(--primary) 12%, transparent); color: var(--primary); font-size: .8125rem; font-weight: 700; white-space: nowrap; line-height: 1; }
+  .followup-desc { font-size: .875rem; color: var(--muted-foreground); line-height: 1.75; }
+  /* 导流组件 */
+  .toast { position: fixed; left: 50%; bottom: 3rem; transform: translateX(-50%) translateY(.75rem); z-index: 60; max-width: min(90vw, 22rem); border-radius: 999px; background: var(--zz-blue-1); color: var(--zz-white); padding: .625rem 1.25rem; font-size: .875rem; line-height: 1.5; text-align: center; opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease; }
+  .toast.is-show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .fu-btn { width: 100%; margin-top: 1rem; border: none; cursor: pointer; font-family: inherit; font-size: .9375rem; font-weight: 600; padding: .75rem 1rem; border-radius: .75rem; background: var(--primary); color: var(--primary-foreground); transition: transform .15s ease, box-shadow .15s ease; }
+  .fu-btn:active { transform: scale(.98); }
+  .fu-btn--outline { background: var(--card); color: var(--primary); box-shadow: inset 0 0 0 1.5px var(--primary); }
+  .fu-check { display: flex; align-items: center; gap: .625rem; margin-top: 1rem; padding: .75rem .875rem; background: var(--card); border: 1px solid var(--border); border-radius: .75rem; font-size: .9375rem; color: var(--foreground); cursor: pointer; user-select: none; transition: background .15s ease, border-color .15s ease; }
+  .fu-check:active { transform: scale(.99); }
+  .fu-check:has(input:checked) { background: color-mix(in srgb, var(--primary) 8%, transparent); border-color: var(--primary); }
+  .fu-check input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .fu-check__box { width: 1.25rem; height: 1.25rem; flex-shrink: 0; border-radius: .375rem; border: 1.5px solid var(--primary); background: var(--card); display: inline-flex; align-items: center; justify-content: center; transition: background .15s ease, border-color .15s ease; }
+  .fu-check__icon { display: inline-flex; align-items: center; justify-content: center; color: var(--primary); flex-shrink: 0; }
+  .fu-check__text { flex: 1; line-height: 1.5; }
+  .fu-check:has(input:checked) .fu-check__box { background: var(--primary); border-color: var(--primary); }
+  .fu-check:has(input:checked) .fu-check__box::after { content: '✓'; color: var(--primary-foreground); font-size: .875rem; line-height: 1; font-weight: 700; }
+  /* 04「让计划成为行动」= 健康辅助功能选择 */
+  .section--launch { background: linear-gradient(180deg, #EAF4F8 0%, rgba(234,244,248,0) 100%); scroll-margin-top: 5rem; }
+  .launch-text { line-height: 2; color: var(--foreground); margin-bottom: 1.5rem; }
+  .hm-panel { margin-top: 2rem; }
+  /* 功能项：功能名（上）→ 卡片（标题+示例）→ 功能说明（下）；三列（移动端单列） */
+  .hm-fs { display: grid; grid-template-columns: 1fr; gap: 2.25rem 1.5rem; }
+  /* 桌面三列：每张卡片宽高比接近 1:1（圆角正方形） */
+  @media (min-width: 880px) {
+    .hm-fs { grid-template-columns: repeat(3, 1fr); }
+    .hm-f__card { min-height: 0; aspect-ratio: 1 / 1; }
+  }
+  /* 每张功能：功能名居中 → 说明 → 卡片 → 勾选按钮 */
+  .hm-f { display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; min-width: 0; }
+  /* 功能名（卡上方，居中粗体） */
+  .hm-f__name-center { font-family: var(--zz-font-sans); font-size: 1.0625rem; font-weight: 700; color: var(--primary); margin: 0; letter-spacing: .05em; text-align: center; align-self: center; }
+  /* 说明（卡上方居中） */
+  .hm-f__desc { margin-top: .625rem; font-size: .8125rem; line-height: 1.85; color: var(--muted-foreground); text-align: center; width: 100%; }
+  .hm-f__desc strong { color: var(--foreground); font-weight: 700; }
+  /* 卡片（默认方形、内容垂直水平居中；选中态卓正蓝描边） */
+  .hm-f__card { width: 100%; margin-top: 1rem; padding: 1rem; border: 1px solid var(--border); border-radius: 1.125rem; background: var(--card); box-shadow: 0 1px 2px rgba(0,0,0,.05); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 12rem; transition: border-color .15s ease, box-shadow .15s ease; }
+  .hm-f:has(input:checked) .hm-f__card { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary), 0 6px 16px color-mix(in srgb, var(--primary) 8%, transparent); }
+  /* 卡内顶部居中标题（个性化） */
+  .hm-f__title-center { font-family: var(--zz-font-sans); font-size: 1rem; font-weight: 700; color: var(--foreground); margin: 0 0 0.625rem; line-height: 1.3; }
+  /* 勾选按钮行（卡片下方独立一行，无描边，强制居中） */
+  .hm-f__check-row { margin-top: 1rem; display: inline-flex; align-items: center; justify-content: center; gap: .5rem; font-size: .9375rem; color: var(--foreground); cursor: pointer; user-select: none; align-self: center; }
+  .hm-f__check-row .hm-f__check-text { font-weight: 500; }
+  .hm-f:has(input:checked) .hm-f__check-text { color: var(--primary); font-weight: 600; }
+  .hm-check { position: relative; display: inline-flex; flex-shrink: 0; }
+  .hm-check input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .hm-check__box { width: 1rem; height: 1rem; border-radius: .375rem; border: 1.5px solid var(--primary); background: var(--card); display: inline-flex; align-items: center; justify-content: center; transition: background .15s ease, border-color .15s ease; }
+  .hm-check input:checked + .hm-check__box { background: var(--primary); border-color: var(--primary); }
+  .hm-check input:checked + .hm-check__box::after { content: '✓'; color: var(--primary-foreground); font-size: .6875rem; font-weight: 700; line-height: 1; }
+  /* 定制食谱：橙色（极小比例点缀） */
+  .hm-f--recipe .hm-f__card { background: linear-gradient(160deg, color-mix(in srgb, var(--zz-accent-orange) 12%, var(--card)) 0%, var(--card) 60%); border-color: color-mix(in srgb, var(--zz-accent-orange) 32%, var(--card)); }
+  /* 每日打卡：蓝绿色（辅助色） */
+  .hm-f--daily .hm-f__card { background: linear-gradient(160deg, color-mix(in srgb, var(--zz-cyan) 12%, var(--card)) 0%, var(--card) 60%); border-color: color-mix(in srgb, var(--zz-cyan) 36%, var(--card)); }
+  /* 每周回顾：蓝色（辅助色） */
+  .hm-f--weekly .hm-f__card { background: linear-gradient(160deg, color-mix(in srgb, var(--zz-blue-light) 18%, var(--card)) 0%, var(--card) 60%); border-color: color-mix(in srgb, var(--zz-blue-light) 42%, var(--card)); }
+  .hm-recipe-day { font-size: .75rem; color: var(--muted-foreground); margin: 0 0 .375rem; }
+  .hm-recipe-day b { color: var(--zz-accent-orange-deep); font-weight: 700; }
+  .hm-recipe-line { display: flex; align-items: baseline; gap: .5rem; font-size: .75rem; line-height: 1.7; color: var(--foreground); width: 100%; }
+  .hm-recipe-line em { flex-shrink: 0; width: 2.4em; font-style: normal; font-weight: 600; color: var(--zz-accent-orange-deep); font-size: .6875rem; }
+  .hm-recipe-line span { flex: 1; }
+  /* 每日打卡 widget 卡片（居中 MEMO 样式） */
+  .hm-f__card--widget { justify-content: center; padding: 1rem .875rem 1rem; }
+  .memo-widget__eyebrow { font-size: .875rem; font-weight: 500; letter-spacing: .12em; color: var(--foreground); }
+  .memo-widget__tagline { margin-top: .25rem; font-size: .6875rem; letter-spacing: .05em; color: var(--muted-foreground); }
+  .memo-widget__divider { margin: .625rem auto; width: 2rem; border: 0; border-top: 1px solid var(--border); }
+  .memo-widget__task { display: flex; align-items: center; justify-content: center; gap: .5rem; margin-top: 0; }
+  .memo-widget__emoji { font-size: 1.5rem; line-height: 1; }
+  .memo-widget__task-title { font-family: var(--zz-font-sans); font-size: 1.0625rem; font-weight: 700; line-height: 1.35; color: var(--foreground); }
+  .memo-widget__benefit { margin-top: .375rem; font-size: .6875rem; color: var(--muted-foreground); letter-spacing: .05em; }
+  .memo-widget__done { margin-top: 1.25rem; display: inline-flex; align-items: center; gap: .5rem; border: 1px solid var(--border); border-radius: 9999px; padding: .625rem 1.25rem; font-size: .9375rem; color: var(--foreground); background: var(--card); }
+  .memo-widget__check { display: inline-flex; align-items: center; justify-content: center; width: 1.5rem; height: 1.5rem; border-radius: 9999px; background: var(--primary); color: var(--primary-foreground); }
+  /* 每周回顾进度条 + 下周重点 */
+  .memo-weekly__progress { position: relative; height: .5rem; border-radius: 9999px; background: color-mix(in srgb, var(--primary) 10%, transparent); overflow: hidden; margin-top: .5rem; }
+  .memo-weekly__progress-bar { position: absolute; left: 0; top: 0; bottom: 0; background: linear-gradient(90deg, var(--zz-blue-1) 0%, var(--zz-blue-3) 100%); border-radius: 9999px; }
+  .memo-weekly__progress-value { position: absolute; right: .5rem; top: 50%; transform: translateY(-50%); font-size: .6875rem; font-weight: 700; color: var(--primary); }
+  .hm-weekly-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: .375rem; margin-top: .5rem; width: 100%; }
+  .hm-stat { display: flex; flex-direction: column; align-items: center; padding: .375rem .125rem; border-radius: .5rem; background: color-mix(in srgb, var(--primary) 6%, transparent); }
+  .hm-stat b { font-family: var(--zz-font-sans); font-size: 1rem; font-weight: 700; color: var(--primary); line-height: 1.2; }
+  .hm-stat i { font-style: normal; font-size: .6875rem; font-weight: 500; margin-left: 1px; }
+  .hm-stat small { font-size: .625rem; color: var(--muted-foreground); margin-top: .125rem; }
+  .memo-weekly__hint { margin-top: .5rem; display: flex; align-items: center; gap: .375rem; padding: .375rem .625rem; border-radius: .5rem; background: color-mix(in srgb, var(--primary) 8%, transparent); text-align: left; width: 100%; }
+  .memo-weekly__hint-tag { flex-shrink: 0; font-size: .625rem; font-weight: 700; color: var(--primary); letter-spacing: .05em; padding: .125rem .4375rem; border-radius: 9999px; background: var(--card); }
+  .memo-weekly__hint-text { font-size: .6875rem; color: var(--accent-foreground); line-height: 1.5; }
+  .hm-confirm { margin-top: 1.75rem; }
+
+  .site-footer { border-top: 1px solid var(--border); padding: 2.5rem 1rem; text-align: center; font-size: .75rem; letter-spacing: .1em; color: var(--muted-foreground); }
+
+  /* ===== 字体收口 ===== */
+  /* 中文标题 / 强调统一走方正粗圆；方正粗圆本身即粗体字形，不再叠加字重，避免浏览器合成加粗 */
+  .hero-title, .section-title, .section-eyebrow, .sub-title, .h4, .goal-title, .goal-tag,
+  .module-title, .action-title, .phase-title, .meta-value, .chip, .quote-card p,
+  .followup-title, .hm-f__name-center, .hm-f__title-center, .memo-widget__task-title {
+    font-family: var(--zz-font-title);
+    font-weight: 400;
+  }
+  /* 西文与数字统一使用 Myriad Pro */
+  .hero-eyebrow, .memo-widget__eyebrow, .module-letter, .phase-num, .toc-num,
+  .timeline-num, .memo-weekly__progress-value, .hm-stat b {
+    font-family: var(--zz-font-en);
+  }
+
+  @media (max-width: 768px) {
+    .header-inner { padding: .75rem 1rem; }
+    .section-nav { display: none; }
+    .brand-logo { height: 1.5rem; }
+    .hero { padding: 2.25rem 1rem 1.75rem; }
+    .hero-title { margin-top: 1rem; font-size: 1.75rem; line-height: 1.35; }
+    .hero-desc { margin-top: 1rem; font-size: .9375rem; line-height: 1.9; }
+    .hero-meta { margin-top: 1.5rem; grid-template-columns: 1fr; }
+    .toc { padding: 1.25rem; }
+    .section { padding: 2rem 1rem 1.5rem; scroll-margin-top: 4rem; }
+    .section-title { font-size: 1.375rem; }
+    .sub-title { font-size: 1.125rem; }
+    .goal-row { grid-template-columns: 1fr; gap: .25rem; }
+    .goal-row-label { margin-top: .5rem; }
+    .goal-head { padding: 1rem 1.25rem; }
+    .goal-body { padding: 1.25rem; }
+    .action-card { padding: 1.125rem 1.25rem; }
+    .module-title { font-size: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <img class="brand-logo" src="pic/卓正医疗标准Logo透明底.png" alt="卓正医疗" />
+      </div>
+      <nav class="section-nav" aria-label="章节导航">
+        <a href="#s01">01</a>
+        <a href="#s02">02</a>
+        <a href="#s03">03</a>
+        <a href="#s04">04</a>
+        <a href="#s05">05</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="hero-eyebrow">PERSONAL HEALTH IMPROVEMENT PLAN</p>
+      <h1 class="hero-title">《个人健康改善计划书》</h1>
+      <p class="hero-desc">不追求完美，只追求持续。这 30 天，只需要比上个月多走几步路、少喝几杯含糖饮料，就已经在往正确的方向走了。</p>
+      <div class="hero-meta">
+        <div class="meta-card">
+          <svg class="meta-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <div><p class="meta-label">计划书主人</p><p class="meta-value">张先生</p></div>
+        </div>
+        <div class="meta-card">
+          <svg class="meta-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M3 10h18"/><path d="M8 2v4"/><path d="M17 14h-6"/><path d="M13 18H7"/><path d="M7 14h.01"/><path d="M17 18h.01"/></svg>
+          <div><p class="meta-label">计划周期</p><p class="meta-value" id="metaPeriod">30 天</p></div>
+        </div>
+      </div>
+      <div class="toc">
+        <p class="toc-label">目录 CONTENTS</p>
+        <ol class="toc-list">
+          <li><a class="toc-link" href="#s01"><span class="toc-link-inner"><span class="toc-num">01</span><span class="toc-title">这是为你制定的</span></span><span class="toc-arrow">›</span></a></li>
+          <li><a class="toc-link" href="#s02"><span class="toc-link-inner"><span class="toc-num">02</span><span class="toc-title">这一个月，我们只解决3件事</span></span><span class="toc-arrow">›</span></a></li>
+          <li><a class="toc-link" href="#s03"><span class="toc-link-inner"><span class="toc-num">03</span><span class="toc-title">你的专属行动方案</span></span><span class="toc-arrow">›</span></a></li>
+          <li><a class="toc-link" href="#s04"><span class="toc-link-inner"><span class="toc-num">04</span><span class="toc-title">让计划成为行动</span></span><span class="toc-arrow">›</span></a></li>
+          <li><a class="toc-link" href="#s05"><span class="toc-link-inner"><span class="toc-num">05</span><span class="toc-title">我们怎么知道它有没有效果</span></span><span class="toc-arrow">›</span></a></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 01 -->
+    <section class="section" id="s01">
+      <div class="section-eyebrow">01</div>
+      <h2 class="section-title">这是为你制定的</h2>
+
+      <h3 class="sub-title">你的健康画像</h3>
+      <div class="prose">
+        <p><strong>你目前处于什么状态</strong></p>
+        <p>结合本次体检，你目前最值得关注的是：体重增加带来的一系列代谢紊乱——血脂四项中有三项超标（总胆固醇5.72、甘油三酯2.38、LDL-C 3.56），肝功能酶学指标升高（ALT 68、GGT 86），提示肝脏已经出现轻度脂肪浸润并伴随损伤。同时，尿酸468、糖化血红蛋白5.7%、血压132/86mmHg都处于临界偏高的状态，这些多是同一根链条上的环节。</p>
+        <p>你不需要一次改变所有事情，那既不现实也没必要。你提到过，办过健身房年卡去了几周就放弃了，节食减肥瘦几斤后又反弹更快——这恰恰说明，目标过高反而难以坚持。真正重要的是，先用一种你<strong>能承受的节奏</strong>，把"吃"和"动"这两件事调整起来。</p>
+        <p>对甲状腺右叶的TI-RADS 3类结节，目前无需担忧，只需按建议定期复查即可——这不是本次计划要处理的问题，这次聚焦代谢。</p>
+      </div>
+
+      <p class="section-caption">当前3个主要攻克点</p>
+      <div class="chips">
+        <span class="chip">晚间过量进食</span>
+        <span class="chip">下午甜食+含糖饮料</span>
+        <span class="chip">长期久坐</span>
+      </div>
+    </section>
+
+    <!-- 02 -->
+    <section class="section" id="s02">
+      <div class="section-eyebrow">02</div>
+      <h2 class="section-title">这一个月，我们只解决3件事</h2>
+
+      <div class="goals">
+        <article class="goal-card">
+          <div class="goal-head">
+            <svg class="goal-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            <div><p class="goal-tag">目标 1</p><h3 class="goal-title">控制体重，减小腰围</h3></div>
+          </div>
+          <div class="goal-body">
+            <div class="goal-quant"><p class="goal-quant-label">30天目标</p><p class="goal-quant-value">体重下降1–2kg，腰围减少2cm左右</p></div>
+            <div class="goal-row"><p class="goal-row-label">体检发现</p><p class="goal-row-value">BMI 27.4、腰围96cm（男性建议&lt;90cm），已处于超重水平</p></div>
+            <div class="goal-row"><p class="goal-row-label">这意味着什么</p><p class="goal-row-value">腹部脂肪堆积是血脂异常、脂肪肝、尿酸偏高、血糖临界这些问题的共同上游因素。腰围降下来，这串指标的改善就有了基础。</p></div>
+            <div class="goal-row"><p class="goal-row-label">干预路径</p><p class="goal-row-value">晚餐时间过晚+分量偏大→把晚餐提前且减量→减少晚间多余能量摄入，体重和腰围开始松动</p></div>
+          </div>
+        </article>
+
+        <article class="goal-card">
+          <div class="goal-head">
+            <svg class="goal-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            <div><p class="goal-tag">目标 2</p><h3 class="goal-title">降低血脂与肝脏脂肪</h3></div>
+          </div>
+          <div class="goal-body">
+            <div class="goal-quant"><p class="goal-quant-label">30天目标</p><p class="goal-quant-value">为血脂和肝功能指标的改善打下行为基础</p></div>
+            <div class="goal-row"><p class="goal-row-label">体检发现</p><p class="goal-row-value">甘油三酯2.38、LDL-C 3.56、ALT 68、GGT 86，肝脏轻度脂肪浸润</p></div>
+            <div class="goal-row"><p class="goal-row-label">这意味着什么</p><p class="goal-row-value">血脂升高和肝酶升高同时出现，提示脂肪正在肝脏堆积并引起轻度损伤，目前仍处于可逆阶段，通过减重和减少酒精摄入，完全有可能改善。</p></div>
+            <div class="goal-row"><p class="goal-row-label">干预路径</p><p class="goal-row-value">每周2–3次啤酒+高脂聚餐→暂减至每2周1次且总量减半→减少酒精和饱和脂肪负荷，给肝脏减负</p></div>
+          </div>
+        </article>
+
+        <article class="goal-card">
+          <div class="goal-head">
+            <svg class="goal-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            <div><p class="goal-tag">目标 3</p><h3 class="goal-title">稳定血糖，阻止进一步恶化</h3></div>
+          </div>
+          <div class="goal-body">
+            <div class="goal-quant"><p class="goal-quant-label">30天目标</p><p class="goal-quant-value">通过饮食调整，为糖化血红蛋白值回落创造条件</p></div>
+            <div class="goal-row"><p class="goal-row-label">体检发现</p><p class="goal-row-value">HbA1c 5.7%，处于糖尿病前期临界范围，空腹胰岛素18.6</p></div>
+            <div class="goal-row"><p class="goal-row-label">这意味着什么</p><p class="goal-row-value">血糖调节能力已经开始吃紧，但还没有进入异常区间，现在是干预的最佳窗口期。</p></div>
+            <div class="goal-row"><p class="goal-row-label">干预路径</p><p class="goal-row-value">下午奶茶+甜点造成血糖大幅波动→换成低糖替代并减少频率→减轻胰岛素负担，降低向糖尿病发展的风险</p></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 03 -->
+    <section class="section section--tinted" id="s03">
+      <div class="section-eyebrow">03</div>
+      <h2 class="section-title">你的专属行动方案</h2>
+
+      <div class="module-head"><span class="module-letter">A</span><h3 class="module-title">饮食</h3></div>
+      <p class="section-caption">你现在的问题是什么</p>
+      <div class="prose"><p>核心问题并不是三餐本身，而是两个场景：工作日15–16点的奶茶+甜点，以及21点以后才吃、还容易吃撑的晚餐。这两个习惯一天里多出来的热量和时间差，恰好对血脂和血糖最不友好。</p></div>
+      <p class="section-caption">接下来具体怎么做</p>
+      <div class="action-list">
+        <div class="action-card"><h4 class="action-title">【奶茶/甜点：从每周4–5次降到≤1次】</h4><p class="action-text">下午饿的时候，先用"1小把原味坚果（约10颗）+ 1杯无糖茶水或无糖酸奶"替代，偶尔忍不住可以喝一杯无糖奶茶，但不要加小料。</p></div>
+        <div class="action-card"><h4 class="action-title">【晚餐提前+减量】</h4><p class="action-text">目标：尽量把晚餐提前到20点前（最晚不超过21点），并吃7分饱。如果加班必须晚吃，那就在18–19点先垫一杯酸奶或一根香蕉，免得晚上饿到失控。</p></div>
+        <div class="action-card"><h4 class="action-title">【晚餐份量控制参考】</h4><p class="action-text">主食≈自己一拳（优先选杂粮饭或红薯），蛋白质≈自己一掌心（鱼/鸡肉/豆制品），蔬菜≥两拳。每2周1次聚餐时，啤酒控制在1瓶以内，并先吃蔬菜再吃肉。</p><p class="planb"><strong>Plan B</strong> 如果哪天实在没做到，不用第二天加倍"补偿"，正常继续下一餐就好。</p></div>
+      </div>
+
+      <div class="module-head"><span class="module-letter">B</span><h3 class="module-title">运动</h3></div>
+      <div class="prose"><p>你目前基本没有运动习惯，我们就不从"每周5次"开始，那样容易重蹈健身房年卡的覆辙。</p></div>
+      <div class="action-list">
+        <div class="action-card"><h4 class="action-title">【做什么 + 做到什么程度】</h4><p class="action-text">前2周：每周3次、每次15–20分钟快走，安排在晚饭后1小时或午休时间。强度标准：微微喘、但还能完整说话。第3–4周：加到每周4次、每次25–30分钟。不追求一次性做满，碎片化完成也可以——比如午饭后绕公司走10分钟，晚饭后楼下走15分钟。</p><p class="planb"><strong>Plan B</strong> 当天状态很差或加班太晚时，至少在家做5分钟深蹲（每次15个×3组）或靠墙站立5分钟。不需要第二天额外补偿。</p></div>
+      </div>
+
+      <div class="module-head"><span class="module-letter">C</span><h3 class="module-title">睡眠与久坐</h3></div>
+      <h4 class="h4">睡眠</h4>
+      <div class="prose"><p>你目前23:30–00:30入睡、睡6–6.5小时，问题在于偏晚且时长略短；同时睡前刷手机会让入睡时间后移、睡眠质量下降。这一阶段不要求你提前到23点前，那不现实。</p></div>
+      <div class="action-list">
+        <div class="action-card"><h4 class="action-title">【做什么 + 做到什么程度】</h4><p class="action-text">目标00:00前上床，每周至少做到5天；睡前把手机放在伸手够不到的地方，改为阅读纸质书或听播客15分钟来过渡入睡。起床时间维持7点左右不变。</p><p class="planb"><strong>Plan B</strong> 实在有工作没处理完，也尽量在00:30前放下手机躺下。睡得不够安稳也不要有压力，先保证"躺下的时间"规律。</p></div>
+      </div>
+      <h4 class="h4">久坐</h4>
+      <div class="prose"><p>你白天连续坐8–10小时，久坐本身会增加甘油三酯和血糖负担。我们先用一个最不费力的小习惯切入，每次只花1分钟：</p></div>
+      <div class="action-list">
+        <div class="action-card"><h4 class="action-title">【做什么 + 做到什么程度】</h4><p class="action-text">设置手机闹钟，每坐满1小时就站起来活动1–2分钟——接杯水、去洗手间、或原地伸展。每天至少完成5次。外加午饭后下楼散步10分钟（同时计入快走目标）。</p></div>
+      </div>
+
+      <div class="module-head"><span class="module-letter">D</span><h3 class="module-title">饮酒</h3></div>
+      <div class="prose"><p>你提到应酬较多，每周2–3次喝酒。酒精本身就会直接升高甘油三酯、加重脂肪肝，并干扰尿酸排泄。</p></div>
+      <div class="action-list">
+        <div class="action-card"><h4 class="action-title">【做什么 + 做到什么程度】</h4><p class="action-text">第一个月先把饮酒频率从每周2–3次降到每2周1次，且每次啤酒不超过1瓶（或红酒≤2杯）。应酬场合可以主动说"最近在调理身体"，用无糖茶或气泡水替代。</p><p class="planb"><strong>Plan B</strong> 实在推不掉的场合，选啤酒以外的蒸馏酒（如白酒/威士忌）且不超过1小杯，同时多喝水，不喝含糖饮料兑酒。</p></div>
+      </div>
+
+    </section>
+
+    <!-- 04 让计划成为行动 -->
+    <section class="section section--launch" id="s04">
+      <div class="section-head">
+        <p class="section-eyebrow">04</p>
+        <h2 class="section-title">让计划成为行动</h2>
+      </div>
+      <div class="hm-panel">
+        <p class="launch-text">这套改善计划基于你的体检结果、生活习惯、客观情况量身定制，但"知易行难"，我们深知迈出第一步并不容易。为了更好的帮助你适应生活方式的变化，卓正将提供一系列配套功能，让改善健康的行为真正开始。现在点击「确认启动健康辅助功能」，开启你的健康行动吧！</p>
+        <div class="hm-fs">
+          <div class="hm-f hm-f--recipe">
+            <h4 class="hm-f__name-center">定制食谱</h4>
+            <p class="hm-f__desc">1分钟问卷，根据健康状况和饮食习惯，生成切实可行的营养食谱，<strong>适合有饮食管理需求的用户</strong>。</p>
+            <div class="hm-f__card">
+              <p class="hm-f__title-center">减重食谱 · 35岁 · 男性</p>
+              <p class="hm-recipe-day"><b>第一周</b></p>
+              <p class="hm-recipe-line"><em>早餐</em><span>全麦燕麦+酸奶</span></p>
+              <p class="hm-recipe-line"><em>午餐</em><span>杂粮饭+清蒸鱼+时蔬</span></p>
+              <p class="hm-recipe-line"><em>晚餐</em><span>鸡胸沙拉+无糖茶</span></p>
+            </div>
+            <label class="hm-f__check-row"><span class="hm-check"><input type="checkbox" checked data-hm-item="recipe" /><span class="hm-check__box"></span></span><span class="hm-f__check-text">启用</span></label>
+          </div>
+          <div class="hm-f hm-f--daily">
+            <h4 class="hm-f__name-center">每日健康打卡</h4>
+            <p class="hm-f__desc">设置桌面widget，提醒并记录每日健康行为，促进好习惯快速养成，<strong>适合有运动/睡眠/戒烟/戒酒管理需求的用户</strong>。</p>
+            <div class="hm-f__card hm-f__card--widget">
+              <p class="memo-widget__eyebrow">今日健康 MEMO</p>
+              <p class="memo-widget__tagline">每天一件事，见证健康改善</p>
+              <hr class="memo-widget__divider">
+              <p class="memo-widget__task">
+                <span class="memo-widget__emoji" aria-hidden="true">🚶</span>
+                <span class="memo-widget__task-title">晚饭后步行 20 分钟</span>
+              </p>
+              <p class="memo-widget__benefit">改善餐后血糖·体重</p>
+            </div>
+            <label class="hm-f__check-row"><span class="hm-check"><input type="checkbox" checked data-hm-item="daily" /><span class="hm-check__box"></span></span><span class="hm-f__check-text">启用</span></label>
+          </div>
+          <div class="hm-f hm-f--weekly">
+            <h4 class="hm-f__name-center">每周健康回顾</h4>
+            <p class="hm-f__desc">授权手机健康数据，每周回顾您的健康情况，针对性调整方案细节，<strong>适合有健康状况改善需求的用户</strong>。</p>
+            <div class="hm-f__card hm-f__card--widget">
+              <p class="memo-widget__eyebrow">本周健康 REVIEW</p>
+              <div class="memo-weekly__progress" aria-label="本周达标率 71%">
+                <span class="memo-weekly__progress-bar" style="width:71%"></span>
+                <span class="memo-weekly__progress-value">71%</span>
+              </div>
+              <div class="hm-weekly-stats">
+                <span class="hm-stat"><b>5</b><i>天</i><small>达标</small></span>
+                <span class="hm-stat"><b>-0.6</b><i>kg</i><small>体重</small></span>
+                <span class="hm-stat"><b>3</b><i>次</i><small>快走</small></span>
+              </div>
+              <div class="memo-weekly__hint">
+                <span class="memo-weekly__hint-tag">下周</span>
+                <span class="memo-weekly__hint-text">晚餐提前到 20 点</span>
+              </div>
+            </div>
+            <label class="hm-f__check-row"><span class="hm-check"><input type="checkbox" checked data-hm-item="weekly" /><span class="hm-check__box"></span></span><span class="hm-f__check-text">启用</span></label>
+          </div>
+        </div>
+        <button type="button" class="fu-btn hm-confirm" data-hm-confirm>确认启动健康辅助功能</button>
+      </div>
+    </section>
+
+    <!-- 05 我们怎么知道它有没有效果 -->
+    <section class="section" id="s05">
+      <div class="section-eyebrow">05</div>
+      <h2 class="section-title">我们怎么知道它有没有效果</h2>
+
+      <div class="followup-block">
+        <h3 class="followup-title"><span class="followup-tag">每周/每日</span>日常数据记录</h3>
+        <div class="prose"><ul>
+          <li>体重：每周固定2次晨起空腹称重并记录</li>
+          <li>腰围：每2周测量1次（用同一把卷尺、同一位置）</li>
+          <li>行为完成情况：每周简单打勾记录——奶茶喝了没、晚餐有没有提前、运动完成了几次、久坐有没有每小时起身</li>
+        </ul></div>
+        <button type="button" class="fu-btn fu-btn--outline" data-fu-device>从设备导入数据</button>
+      </div>
+
+      <div class="followup-block">
+        <h3 class="followup-title"><span class="followup-tag">1 个月后</span>线上问卷随访</h3>
+        <div class="prose"><ul>
+          <li>通过线上健康问卷，评估这一个月饮食和运动调整后的状态变化与主观感受，判断当前方案是否适合、是否需要调整</li>
+        </ul></div>
+        <label class="fu-check">
+          <span class="fu-check__text">1 个月后提醒我线上随访</span>
+          <span class="fu-check__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
+          <span class="fu-check__box"></span>
+          <input type="checkbox" data-fu-remind />
+        </label>
+      </div>
+
+      <div class="followup-block">
+        <h3 class="followup-title"><span class="followup-tag">3 个月后</span>线下指标复查</h3>
+        <div class="prose"><ul>
+          <li>复查血脂、空腹血糖与糖化血红蛋白、尿酸及肝功能（ALT/GGT），让数据告诉我们方向是否正确</li>
+          <li>建议于同一家体检机构复查，对比变化最可靠。如期间出现明显不适（如右上腹持续疼痛、明显乏力、口渴多尿等），应提前就医</li>
+        </ul></div>
+        <button type="button" class="fu-btn" data-fu-appt>预约线下复查</button>
+      </div>
+
+      <div class="followup-block">
+        <h3 class="followup-title"><span class="followup-tag">6 个月后</span>线下指标复查</h3>
+        <div class="prose"><ul>
+          <li>复查甲状腺超声，观察结节大小及影像特征变化</li>
+        </ul></div>
+        <button type="button" class="fu-btn" data-fu-appt>预约线下复查</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    卓正医疗 · 个人健康改善计划书 · <span id="footerDate"></span>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // 填充计划周期（生成日期 ~ +1 个月）
+    (function () {
+      var now = new Date();
+      var fmt = function (d) { return d.getFullYear() + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getDate()).padStart(2, '0'); };
+      var end = new Date(now); end.setMonth(end.getMonth() + 1);
+      document.getElementById('footerDate').textContent = fmt(now) + ' — ' + fmt(end);
+      var p = document.getElementById('metaPeriod');
+      if (p) p.textContent = fmt(now) + ' — ' + fmt(end);
+    })();
+
+    // 轻提示
+    (function () {
+      var toast = document.getElementById('toast');
+      var timer = null;
+      window.showToast = function (msg) {
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.classList.add('is-show');
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(function () { toast.classList.remove('is-show'); }, 2600);
+      };
+      // 04 导流组件交互
+      document.querySelectorAll('[data-fu-device]').forEach(function (b) {
+        b.addEventListener('click', function () { showToast('正在从设备同步您的日常健康数据…'); });
+      });
+      document.querySelectorAll('[data-fu-remind]').forEach(function (c) {
+        c.addEventListener('change', function () {
+          showToast(c.checked ? '已为您开启 1 个月后线上随访提醒' : '已取消线上随访提醒');
+        });
+      });
+      document.querySelectorAll('[data-fu-appt]').forEach(function (b) {
+        b.addEventListener('click', function () { showToast('已为您生成线下复查预约意向，请确认预约时间与科室。'); });
+      });
+      // 04 健康辅助：勾选切换文案；确认时汇总勾选功能项
+      var HM_NAMES = { recipe: '定制食谱', daily: '每日健康打卡', weekly: '每周健康回顾' };
+      document.querySelectorAll('[data-hm-item]').forEach(function (it) {
+        it.addEventListener('change', function () {
+          var row = it.closest('.hm-f__check-row');
+          var text = row ? row.querySelector('.hm-f__check-text') : null;
+          if (text) text.textContent = it.checked ? '启用' : '不启用';
+        });
+      });
+      document.querySelectorAll('[data-hm-confirm]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var names = [];
+          document.querySelectorAll('[data-hm-item]:checked').forEach(function (it) {
+            var n = HM_NAMES[it.getAttribute('data-hm-item')];
+            if (n) names.push(n);
+          });
+          showToast(names.length ? '已为您开启' + names.join('、') + '健康辅助' : '未选择任何健康辅助功能，可随时在后续调整');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
