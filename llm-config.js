@@ -11,9 +11,8 @@
 (function (w) {
   "use strict";
   w.LLM_CONFIG = {
-    apiUrl: "https://integrate.api.nvidia.com/v1/chat/completions",
-    apiKey:
-      "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",
+    apiUrl: "/llm-proxy",
+    apiKey: "pulinli222666uiqo",
     model: "deepseek-v4-flash",
   };
 })(window);

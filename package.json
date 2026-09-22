@@ -1,0 +1,9 @@
+{
+  "name": "online-health-care",
+  "private": true,
+  "version": "1.0.0",
+  "description": "卓正线上健康服务静态站点（含本地同源 LLM 代理）",
+  "scripts": {
+    "start": "node dev-server.js"
+  }
+}
