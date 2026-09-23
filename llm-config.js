@@ -10,8 +10,21 @@
   ============================================================================= */
 (function (w) {
   "use strict";
+  // 本地走 dev-server.js 的同源代理；线上（GitHub Pages 等静态托管）需要一个真正常驻
+  // 的代理接口，二选一：
+  //   1) Cloudflare Worker   https://llm-proxy.<你的子域名>.workers.dev
+  //   2) Vercel 函数         https://<你的项目>.vercel.app/api/llm-proxy
+  // 部署后把下面地址换成你实际的 URL。
+  var host = (w.location && w.location.hostname) || "";
+  var isLocal =
+    !host ||
+    host === "localhost" ||
+    host === "127.0.0.1" ||
+    host.startsWith("192.168.");
   w.LLM_CONFIG = {
-    apiUrl: "/llm-proxy",
+    apiUrl: isLocal
+      ? "/llm-proxy"
+      : "https://throbbing-leaf-eb06.1013851072.workers.dev",
     apiKey: "pulinli222666uiqo",
     model: "deepseek-v4-flash",
   };
